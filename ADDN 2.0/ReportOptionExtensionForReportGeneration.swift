@@ -24,8 +24,6 @@ extension ReportOptionController: ChartViewDelegate {
         
         if selectedAttributeIndexes[0].count == 1{
             urlForPatientTable = urlForPatientTable + "&gender=eq." + Constants.SELECTABLE_GENDERS[selectedAttributeIndexes[0][0]].uppercased()
-        }else{
-            
         }
         
         if Constants.SELECTABLE_DIABETES_TYPES.endIndex != selectedAttributeIndexes[1][0]{
@@ -34,6 +32,11 @@ extension ReportOptionController: ChartViewDelegate {
             urlForPatientTable = urlForPatientTable + "&diabetes_type_value=eq." + Constants.SELECTABLE_DIABETES_TYPES[Constants.SELECTABLE_DIABETES_TYPES.endIndex].uppercased()
         }
         
+        if (switchForContact?.isOn)! {
+            urlForPatientTable = urlForPatientTable + "&consent_to_be_contacted=eq.true"
+        }
+        
+        print(urlForPatientTable)
         return urlForPatientTable
     }
     
@@ -75,6 +78,7 @@ extension ReportOptionController: ChartViewDelegate {
         return fetchedData
     }
     
+        
     
     func showChart(fetchedData: FetchedData) {
         let report = ReportController()
@@ -143,9 +147,7 @@ extension ReportOptionController: ChartViewDelegate {
                 
             }
         }
-        
-        
-        
+    
         //Age
         if self.ranges[0].count > 0 {
             var numbers = [Double](repeating: 0.0, count: self.ranges[0].count)
@@ -183,18 +185,7 @@ extension ReportOptionController: ChartViewDelegate {
                 titleForAgeRanges.append(title)
             }
 
-            
             views.append(PieChart(dataPoints: titleForAgeRanges, values: numbers, title: "Age Distribution"))
-            
-//            for i in 0..<numbers.count {
-//                print(totalAgesInDays[i]/365.0/numbers[i])
-//                print(totalDurationsInDays[i]/365.0/numbers[i])
-//                print(HbA1cRanges[i].average)
-//                print(HbA1cRanges[i].median)
-//                print(HbA1cRanges[i].min)
-//                print(HbA1cRanges[i].max)
-//            }
-
             
             if self.ranges[3].count > 0 {
                 var groupedvalues = [[Double]](repeating: [Double](repeating: 0.0, count: self.ranges[3].count), count: self.ranges[0].count)
@@ -231,15 +222,6 @@ extension ReportOptionController: ChartViewDelegate {
 
         }
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
 //        Insulin Regimen
         if self.selectedAttributeIndexes[2].count == 0 || self.selectedAttributeIndexes[2].count == Constants.SELECTABLE_INSULIN_REGIMEN.count {
             
@@ -260,16 +242,6 @@ extension ReportOptionController: ChartViewDelegate {
             }
             
             views.append(PieChart(dataPoints: Constants.SELECTABLE_INSULIN_REGIMEN, values: numbers, title: "Insulin Regimen Distribution"))
-            
-//            for i in 0..<numbers.count {
-//                print(totalAgesInDays[i]/365.0/numbers[i])
-//                print(totalDurationsInDays[i]/365.0/numbers[i])
-//                print(HbA1cRanges[i].average)
-//                print(HbA1cRanges[i].median)
-//                print(HbA1cRanges[i].min)
-//                print(HbA1cRanges[i].max)
-//            }
-            
             
             if self.ranges[3].count > 0 {
                 var groupedvalues = [[Double]](repeating: [Double](repeating: 0.0, count: self.ranges[3].count), count: self.ranges[1].count)
@@ -301,7 +273,6 @@ extension ReportOptionController: ChartViewDelegate {
             }
 
         }
-        
         
         //diabetes duration
         if self.ranges[1].count > 0 {
@@ -340,18 +311,7 @@ extension ReportOptionController: ChartViewDelegate {
                 titleForDiabeteDurationRanges.append(title)
             }
             
-            
             views.append(PieChart(dataPoints: titleForDiabeteDurationRanges, values: numbers, title: "Diabete Duration Distribution"))
-            
-//            for i in 0..<numbers.count {
-//                print(totalAgesInDays[i]/365.0/numbers[i])
-//                print(totalDurationsInDays[i]/365.0/numbers[i])
-//                print(HbA1cRanges[i].average)
-//                print(HbA1cRanges[i].median)
-//                print(HbA1cRanges[i].min)
-//                print(HbA1cRanges[i].max)
-//            }
-            
             
             if self.ranges[3].count > 0 {
                 var groupedvalues = [[Double]](repeating: [Double](repeating: 0.0, count: self.ranges[3].count), count: self.ranges[1].count)
@@ -393,13 +353,15 @@ extension ReportOptionController: ChartViewDelegate {
         self.navigationController?.pushViewController(report, animated: true)
 
     }
-    
-    
-    func getIndexForInsulinRegimen(visit: Visit) -> Int {
-        if let insulinRegimen = visit.insulin_regimen, let index = Constants.TITLES_FOR_INSULIN_REGIMEN.index(of: insulinRegimen) {
-            return index
-        }else {
-            return Constants.TITLES_FOR_INSULIN_REGIMEN.endIndex-1
-        }
-    }
 }
+
+
+
+
+
+
+
+
+
+
+

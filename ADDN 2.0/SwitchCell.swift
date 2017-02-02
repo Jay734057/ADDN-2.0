@@ -10,6 +10,9 @@ import UIKit
 
 class SwitchCell: BaseCell {
     
+    var titleLabelWidthAnchorConstraint: NSLayoutConstraint?
+    var titleLabelRightAnChorConstraint: NSLayoutConstraint?
+    
     let switchButton: UISwitch = {
         let switchButton = UISwitch(frame: CGRect.zero)
         return switchButton
@@ -34,7 +37,12 @@ class SwitchCell: BaseCell {
         //xywh
         titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 18).isActive = true
         titleLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        titleLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        
+        titleLabelWidthAnchorConstraint = titleLabel.widthAnchor.constraint(equalToConstant: 100)
+        titleLabelWidthAnchorConstraint?.isActive = true
+        
+        titleLabelRightAnChorConstraint = titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -18)
+        
         titleLabel.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
         
         addSubview(detailLabel)

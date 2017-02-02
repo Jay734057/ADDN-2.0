@@ -45,11 +45,16 @@ struct Constants {
     static let PRESET_HbA1c_RANGES_FOR_NGSP = [(Double.leastNormalMagnitude,7.0),(7.0,7.5),(7.5,9.0),(9.0,Double.greatestFiniteMagnitude)]
     
     static let PRESET_HbA1c_RANGES_FOR_IFFC = [(Double.leastNormalMagnitude,53.0),(53.0,58.0),(58.0,75.0),(75.0,Double.greatestFiniteMagnitude)]
+    //
+    static let CONSENTTOBECONTACTED = "Consent to be contacted"
     
+    static let AGEBREAKDOWNBYGENDER = "Age range breakdown by gender"
+    
+    static let INSULINREGIMENBREAKDOWNBYAGE = "Insulin regimen breakdown by age"
     
     //menu constant 
     
-    static let SELECTABLE_ITEMS = [[GENDER,AGE_RANGE],[DIABETES_TYPE,DIATETES_DURATION_RANGE],[INSULIN_REGIMEN],[HbA1c_TYPE,HbA1c_RANGES]]
+    static let SELECTABLE_ITEMS = [[GENDER,AGE_RANGE],[DIABETES_TYPE,DIATETES_DURATION_RANGE],[INSULIN_REGIMEN],[HbA1c_TYPE,HbA1c_RANGES],[CONSENTTOBECONTACTED,AGEBREAKDOWNBYGENDER,INSULINREGIMENBREAKDOWNBYAGE]]
     
     static let SELECTABLE_ATTRIBUTES = [SELECTABLE_GENDERS,SELECTABLE_DIABETES_TYPES,SELECTABLE_INSULIN_REGIMEN,SELECTABLE_HbA1c_TYPES]
 
