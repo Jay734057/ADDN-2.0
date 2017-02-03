@@ -147,81 +147,213 @@ extension ReportOptionController: ChartViewDelegate {
                 
             }
         }
-    
+    ///////////////////////////////////////////////////////////////////////////////////////////////
         //Age
         if self.ranges[0].count > 0 {
-            var numbers = [Double](repeating: 0.0, count: self.ranges[0].count)
-            var totalAgesInDays = [Double](repeating: 0.0, count: self.ranges[0].count)
-            var totalDurationsInDays = [Double](repeating: 0.0, count: self.ranges[0].count)
-            var HbA1cRanges = [[Double]](repeating: [], count:  self.ranges[0].count)
-            
-            var ageRanges = [(Double,Double)]()
-            
-            //initial ageRanges
-            for i in 0..<self.ranges[0].count {
-                let min = (self.ranges[0][i].0 == Double.leastNormalMagnitude ? 0:self.ranges[0][i].0) * 365
-                let max = (self.ranges[0][i].1 == Double.greatestFiniteMagnitude ? 200:self.ranges[0][i].1) * 365
-                ageRanges.append((min,max))
-            }
-            
-            for i in 0..<local_id_id.count {
-                for index in 0..<ageRanges.count {
-                    if let ageInDays = patients[i].age_at_export_in_days {
-                        if Double(ageInDays) > ageRanges[index].0 && Double(ageInDays) <= ageRanges[index].1 {
-                            numbers[index] += 1
-                            totalAgesInDays[index] += Double(patients[i].age_at_export_in_days!)
-                            totalDurationsInDays[index] += Double(patients[i].diabetes_duration_in_days!)
-                            HbA1cRanges[index].append(Double(
-                                self.FlagForHbA1cTypes ? (visits[i].hba1c_iffc)! : (visits[i].hba1c_ngsp)!
-                            ))
-                        }
-                    }
-                }
-            }
-            
-            var titleForAgeRanges = [String]()
-            for range in self.ranges[0] {
-                let title: String = (range.0 == Double.leastNormalMagnitude ? "" : range.0.description) + "~" + (range.1 == Double.greatestFiniteMagnitude ? "" : range.1.description) + " years old"
-                titleForAgeRanges.append(title)
-            }
-
-            views.append(PieChart(dataPoints: titleForAgeRanges, values: numbers, title: "Age Distribution"))
-            
-            if self.ranges[3].count > 0 {
-                var groupedvalues = [[Double]](repeating: [Double](repeating: 0.0, count: self.ranges[3].count), count: self.ranges[0].count)
+            if FlagForAgeBreakDown {
+                var numbers = [[Double]](repeating: [Double](repeating: 0.0, count: self.ranges[0].count), count: Constants.SELECTABLE_GENDERS.count)
+                var totalAgesInDays = [[Double]](repeating: [Double](repeating: 0.0, count: self.ranges[0].count), count: Constants.SELECTABLE_GENDERS.count)
+                var totalDurationsInDays = [[Double]](repeating: [Double](repeating: 0.0, count: self.ranges[0].count), count: Constants.SELECTABLE_GENDERS.count)
+                var HbA1cRanges = [[[Double]]](repeating: [[Double]](repeating: [], count: self.ranges[0].count), count: Constants.SELECTABLE_GENDERS.count)
                 
-                for i in 0..<self.ranges[3].count {
-                    let min = (self.ranges[3][i].0 == Double.leastNormalMagnitude ? 0:self.ranges[3][i].0)
-                    let max = (self.ranges[3][i].1 == Double.greatestFiniteMagnitude ? 200:self.ranges[3][i].1)
-                    
-                    for j in 0..<local_id_id.count {
-                        let value = Double((FlagForHbA1cTypes ? visits[j].hba1c_iffc : visits[j].hba1c_ngsp)!)
-                        
-                        if value > min && value <= max {
-                            if let ageInDays = patients[j].age_at_export_in_days {
-                                for index in 0..<ageRanges.count {
-                                    if Double(ageInDays) > ageRanges[index].0 && Double(ageInDays) <= ageRanges[index].1{
-                                        groupedvalues[index][i] += 1
-                                    }
+                var ageRanges = [(Double,Double)]()
+                
+                //initial ageRanges
+                for i in 0..<self.ranges[0].count {
+                    let min = (self.ranges[0][i].0 == Double.leastNormalMagnitude ? 0:self.ranges[0][i].0) * 365
+                    let max = (self.ranges[0][i].1 == Double.greatestFiniteMagnitude ? 200:self.ranges[0][i].1) * 365
+                    ageRanges.append((min,max))
+                }
+                
+                for i in 0..<local_id_id.count {
+                    for index in 0..<ageRanges.count {
+                        if let ageInDays = patients[i].age_at_export_in_days {
+                            if Double(ageInDays) > ageRanges[index].0 && Double(ageInDays) <= ageRanges[index].1 {
+                                if let gender = patients[i].gender, let j = Constants.TITLES_FOR_GENDERS.index(of: gender){
+                                    numbers[j][index] += 1
+                                    totalAgesInDays[j][index] += Double(patients[i].age_at_export_in_days!)
+                                    totalDurationsInDays[j][index] += Double(patients[i].diabetes_duration_in_days!)
+                                    HbA1cRanges[j][index].append(Double(
+                                        self.FlagForHbA1cTypes ? (visits[i].hba1c_iffc)! : (visits[i].hba1c_ngsp)!
+                                    ))
                                 }
                             }
                         }
                     }
                 }
                 
-                var titleForHbA1cRanges = [String]()
-                for hba1cRange in self.ranges[3] {
-                    let datapoint: String = (hba1cRange.0 == Double.leastNormalMagnitude ? "" : hba1cRange.0.description) + "~" + (hba1cRange.1 == Double.greatestFiniteMagnitude ? "" : hba1cRange.1.description)
-                    titleForHbA1cRanges.append(datapoint)
+                var titleForAgeRanges = [String]()
+                for range in self.ranges[0] {
+                    let title: String = (range.0 == Double.leastNormalMagnitude ? "" : range.0.description) + "~" + (range.1 == Double.greatestFiniteMagnitude ? "" : range.1.description)
+                    titleForAgeRanges.append(title)
+                }
+                
+                views.append(BarChartWithFormatter(dataPoints: titleForAgeRanges, groupedValues: numbers, labels: Constants.SELECTABLE_GENDERS, title: "Age break down by genders"))
+                
+                            for i in 0..<numbers.count {
+                                for j in 0..<numbers[i].count {
+                                    print(totalAgesInDays[i][j]/365.0/numbers[i][j])
+                                    print(totalDurationsInDays[i][j]/365.0/numbers[i][j])
+                                    print(HbA1cRanges[i][j].average)
+                                    print(HbA1cRanges[i][j].median)
+                                    print(HbA1cRanges[i][j].min)
+                                    print(HbA1cRanges[i][j].max)
+                                }
+                            }
+                
+                if self.ranges[3].count > 0 {
+                    var groupedvalues = [[Double]](repeating: [Double](repeating: 0.0, count: self.ranges[3].count), count: self.ranges[0].count)
+                    
+                
+                    for i in 0..<self.ranges[3].count {
+                        let min = (self.ranges[3][i].0 == Double.leastNormalMagnitude ? 0:self.ranges[3][i].0)
+                        let max = (self.ranges[3][i].1 == Double.greatestFiniteMagnitude ? 200:self.ranges[3][i].1)
+                        
+                        for j in 0..<local_id_id.count {
+                            let value = Double((FlagForHbA1cTypes ? visits[j].hba1c_iffc : visits[j].hba1c_ngsp)!)
+                            
+                            if value > min && value <= max {
+                                if let ageInDays = patients[j].age_at_export_in_days {
+                                    for index in 0..<ageRanges.count {
+                                        if Double(ageInDays) > ageRanges[index].0 && Double(ageInDays) <= ageRanges[index].1{
+                                            groupedvalues[index][i] += 1
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                    var titleForHbA1cRanges = [String]()
+                    for hba1cRange in self.ranges[3] {
+                        let datapoint: String = (hba1cRange.0 == Double.leastNormalMagnitude ? "" : hba1cRange.0.description) + "~" + (hba1cRange.1 == Double.greatestFiniteMagnitude ? "" : hba1cRange.1.description)
+                        titleForHbA1cRanges.append(datapoint)
+                    }
+                    
+                    
+                    views.append(BarChartWithFormatter(dataPoints: titleForHbA1cRanges, groupedValues: groupedvalues, labels: titleForAgeRanges,title:"HbA1c Range Distribution"))
+                    
                 }
 
+            }else {
+                var numbers = [Double](repeating: 0.0, count: self.ranges[0].count)
+                var totalAgesInDays = [Double](repeating: 0.0, count: self.ranges[0].count)
+                var totalDurationsInDays = [Double](repeating: 0.0, count: self.ranges[0].count)
+                var HbA1cRanges = [[Double]](repeating: [], count:  self.ranges[0].count)
                 
-                views.append(BarChartWithFormatter(dataPoints: titleForHbA1cRanges, groupedValues: groupedvalues, labels: titleForAgeRanges,title:"HbA1c Range Distribution"))
+                var ageRanges = [(Double,Double)]()
                 
-            }
+                //initial ageRanges
+                for i in 0..<self.ranges[0].count {
+                    let min = (self.ranges[0][i].0 == Double.leastNormalMagnitude ? 0:self.ranges[0][i].0) * 365
+                    let max = (self.ranges[0][i].1 == Double.greatestFiniteMagnitude ? 200:self.ranges[0][i].1) * 365
+                    ageRanges.append((min,max))
+                }
+                
+                for i in 0..<local_id_id.count {
+                    for index in 0..<ageRanges.count {
+                        if let ageInDays = patients[i].age_at_export_in_days {
+                            if Double(ageInDays) > ageRanges[index].0 && Double(ageInDays) <= ageRanges[index].1 {
+                                numbers[index] += 1
+                                totalAgesInDays[index] += Double(patients[i].age_at_export_in_days!)
+                                totalDurationsInDays[index] += Double(patients[i].diabetes_duration_in_days!)
+                                HbA1cRanges[index].append(Double(
+                                    self.FlagForHbA1cTypes ? (visits[i].hba1c_iffc)! : (visits[i].hba1c_ngsp)!
+                                ))
+                            }
+                        }
+                    }
+                }
+                
+                var titleForAgeRanges = [String]()
+                for range in self.ranges[0] {
+                    let title: String = (range.0 == Double.leastNormalMagnitude ? "" : range.0.description) + "~" + (range.1 == Double.greatestFiniteMagnitude ? "" : range.1.description) + " years old"
+                    titleForAgeRanges.append(title)
+                }
+                
+                views.append(PieChart(dataPoints: titleForAgeRanges, values: numbers, title: "Age Distribution"))
+                
+                
+                
+                if self.ranges[3].count > 0 {
+                    var groupedvalues = [[Double]](repeating: [Double](repeating: 0.0, count: self.ranges[3].count), count: self.ranges[0].count)
+                    
+                    for i in 0..<self.ranges[3].count {
+                        let min = (self.ranges[3][i].0 == Double.leastNormalMagnitude ? 0:self.ranges[3][i].0)
+                        let max = (self.ranges[3][i].1 == Double.greatestFiniteMagnitude ? 200:self.ranges[3][i].1)
+                        
+                        for j in 0..<local_id_id.count {
+                            let value = Double((FlagForHbA1cTypes ? visits[j].hba1c_iffc : visits[j].hba1c_ngsp)!)
+                            
+                            if value > min && value <= max {
+                                if let ageInDays = patients[j].age_at_export_in_days {
+                                    for index in 0..<ageRanges.count {
+                                        if Double(ageInDays) > ageRanges[index].0 && Double(ageInDays) <= ageRanges[index].1{
+                                            groupedvalues[index][i] += 1
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                    var titleForHbA1cRanges = [String]()
+                    for hba1cRange in self.ranges[3] {
+                        let datapoint: String = (hba1cRange.0 == Double.leastNormalMagnitude ? "" : hba1cRange.0.description) + "~" + (hba1cRange.1 == Double.greatestFiniteMagnitude ? "" : hba1cRange.1.description)
+                        titleForHbA1cRanges.append(datapoint)
+                    }
+                    
+                    
+                    views.append(BarChartWithFormatter(dataPoints: titleForHbA1cRanges, groupedValues: groupedvalues, labels: titleForAgeRanges,title:"HbA1c Range Distribution"))
+                    
+                }
 
+            }
+            
         }
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////
 //        Insulin Regimen
         if self.selectedAttributeIndexes[2].count == 0 || self.selectedAttributeIndexes[2].count == Constants.SELECTABLE_INSULIN_REGIMEN.count {
             
