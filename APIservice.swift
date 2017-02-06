@@ -52,6 +52,28 @@ class APIservice: NSObject {
             }
         }).resume()
     }
+    
+    func fetchFromURLForLocalId(url:String, completion:@escaping ([LocalID])->()){
+        let url = URL(string: url)
+        URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+            if error != nil {
+                print(error!)
+                return
+            }
+            do {
+                if let unwrapped = data,
+                    let json = try JSONSerialization.jsonObject(with: unwrapped, options: .mutableContainers) as? [[String: AnyObject]] {
+                    let messages = json.map({return LocalID(dictionary: $0)})
+                    DispatchQueue.main.async(execute: {
+                        completion(messages)
+                    })
+                }
+            } catch let error {
+                print(error)
+            }
+        }).resume()
+    }
+
 
     
 //    func getJSON(urlToRequest: String) -> NSData{

@@ -23,6 +23,12 @@
 		69C67CFB1E358DE600CDEB89 /* MultiSelectMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C67CFA1E358DE600CDEB89 /* MultiSelectMenuController.swift */; };
 		69C67CFF1E35DD1F00CDEB89 /* RangeMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C67CFE1E35DD1F00CDEB89 /* RangeMenuController.swift */; };
 		69C67D011E35E66A00CDEB89 /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C67D001E35E66A00CDEB89 /* SwitchCell.swift */; };
+		69C8E1611E45716500B9BEAF /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C8E1601E45716500B9BEAF /* HomeController.swift */; };
+		69C8E1651E46ACF700B9BEAF /* LocalID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C8E1641E46ACF700B9BEAF /* LocalID.swift */; };
+		69C8E1671E46AE5A00B9BEAF /* DashboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C8E1661E46AE5A00B9BEAF /* DashboardController.swift */; };
+		69C8E1691E46B02000B9BEAF /* FetchedDataForDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C8E1681E46B02000B9BEAF /* FetchedDataForDashboard.swift */; };
+		69C8E16B1E4712A200B9BEAF /* DashboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C8E16A1E4712A200B9BEAF /* DashboardCell.swift */; };
+		69C8E16D1E47190B00B9BEAF /* OverviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C8E16C1E47190B00B9BEAF /* OverviewController.swift */; };
 		69D597581E342C1F006029BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D597571E342C1F006029BD /* AppDelegate.swift */; };
 		69D5975F1E342C1F006029BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69D5975E1E342C1F006029BD /* Assets.xcassets */; };
 		69D5976D1E342EBD006029BD /* SafeJsonObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D5976C1E342EBD006029BD /* SafeJsonObject.swift */; };
@@ -31,7 +37,7 @@
 		69D597731E342FD5006029BD /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D597721E342FD5006029BD /* BaseCell.swift */; };
 		69D597751E34305D006029BD /* ReportOptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D597741E34305D006029BD /* ReportOptionController.swift */; };
 		69D597771E34309D006029BD /* RangeOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D597761E34309D006029BD /* RangeOptionCell.swift */; };
-		69D597791E3430D1006029BD /* FetchedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D597781E3430D1006029BD /* FetchedData.swift */; };
+		69D597791E3430D1006029BD /* FetchedDataForReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D597781E3430D1006029BD /* FetchedDataForReport.swift */; };
 		69D597A11E34351C006029BD /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D5979C1E343510006029BD /* Charts.framework */; };
 		69D597A21E34351C006029BD /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 69D5979C1E343510006029BD /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -98,6 +104,12 @@
 		69C67CFA1E358DE600CDEB89 /* MultiSelectMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiSelectMenuController.swift; sourceTree = "<group>"; };
 		69C67CFE1E35DD1F00CDEB89 /* RangeMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeMenuController.swift; sourceTree = "<group>"; };
 		69C67D001E35E66A00CDEB89 /* SwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
+		69C8E1601E45716500B9BEAF /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		69C8E1641E46ACF700B9BEAF /* LocalID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalID.swift; sourceTree = "<group>"; };
+		69C8E1661E46AE5A00B9BEAF /* DashboardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardController.swift; sourceTree = "<group>"; };
+		69C8E1681E46B02000B9BEAF /* FetchedDataForDashboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedDataForDashboard.swift; sourceTree = "<group>"; };
+		69C8E16A1E4712A200B9BEAF /* DashboardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardCell.swift; sourceTree = "<group>"; };
+		69C8E16C1E47190B00B9BEAF /* OverviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverviewController.swift; sourceTree = "<group>"; };
 		69D597541E342C1F006029BD /* ADDN 2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ADDN 2.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		69D597571E342C1F006029BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		69D5975E1E342C1F006029BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -108,7 +120,7 @@
 		69D597721E342FD5006029BD /* BaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		69D597741E34305D006029BD /* ReportOptionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportOptionController.swift; sourceTree = "<group>"; };
 		69D597761E34309D006029BD /* RangeOptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeOptionCell.swift; sourceTree = "<group>"; };
-		69D597781E3430D1006029BD /* FetchedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedData.swift; sourceTree = "<group>"; };
+		69D597781E3430D1006029BD /* FetchedDataForReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedDataForReport.swift; sourceTree = "<group>"; };
 		69D597951E34350F006029BD /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../Charts-master copy/Charts.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -183,9 +195,11 @@
 			isa = PBXGroup;
 			children = (
 				69D5976C1E342EBD006029BD /* SafeJsonObject.swift */,
-				69D597781E3430D1006029BD /* FetchedData.swift */,
+				69D597781E3430D1006029BD /* FetchedDataForReport.swift */,
+				69C8E1681E46B02000B9BEAF /* FetchedDataForDashboard.swift */,
 				699170CC1E37507400175B0A /* Patient.swift */,
 				699170D01E3753BB00175B0A /* Visit.swift */,
+				69C8E1641E46ACF700B9BEAF /* LocalID.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -196,6 +210,7 @@
 				69D597721E342FD5006029BD /* BaseCell.swift */,
 				69D597761E34309D006029BD /* RangeOptionCell.swift */,
 				69C67D001E35E66A00CDEB89 /* SwitchCell.swift */,
+				69C8E16A1E4712A200B9BEAF /* DashboardCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -206,6 +221,9 @@
 				69047B591E3DCC580017CC20 /* ChartViews */,
 				699170DD1E39C71400175B0A /* MenuControllers */,
 				69C67CF11E343CFB00CDEB89 /* ActivateController.swift */,
+				69C8E1601E45716500B9BEAF /* HomeController.swift */,
+				69C8E1661E46AE5A00B9BEAF /* DashboardController.swift */,
+				69C8E16C1E47190B00B9BEAF /* OverviewController.swift */,
 				69D597741E34305D006029BD /* ReportOptionController.swift */,
 				699170D71E39C62E00175B0A /* ReportOptionExtensionForMenu.swift */,
 				699170D91E39C69F00175B0A /* ReportOptionExtensionForReportGeneration.swift */,
@@ -328,18 +346,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69C8E16D1E47190B00B9BEAF /* OverviewController.swift in Sources */,
 				699170CD1E37507400175B0A /* Patient.swift in Sources */,
 				699170D31E3835E300175B0A /* SingleSelectMenuController.swift in Sources */,
 				699170DA1E39C69F00175B0A /* ReportOptionExtensionForReportGeneration.swift in Sources */,
 				69C67CFF1E35DD1F00CDEB89 /* RangeMenuController.swift in Sources */,
+				69C8E1671E46AE5A00B9BEAF /* DashboardController.swift in Sources */,
 				69D597711E342F95006029BD /* APIservice.swift in Sources */,
 				69D597751E34305D006029BD /* ReportOptionController.swift in Sources */,
 				699170D61E39B82F00175B0A /* Constants.swift in Sources */,
 				69D597581E342C1F006029BD /* AppDelegate.swift in Sources */,
+				69C8E1691E46B02000B9BEAF /* FetchedDataForDashboard.swift in Sources */,
 				69C67CF21E343CFB00CDEB89 /* ActivateController.swift in Sources */,
-				69D597791E3430D1006029BD /* FetchedData.swift in Sources */,
+				69D597791E3430D1006029BD /* FetchedDataForReport.swift in Sources */,
 				69C67CFB1E358DE600CDEB89 /* MultiSelectMenuController.swift in Sources */,
 				69047B5B1E3DCC9C0017CC20 /* PieChart.swift in Sources */,
+				69C8E16B1E4712A200B9BEAF /* DashboardCell.swift in Sources */,
+				69C8E1651E46ACF700B9BEAF /* LocalID.swift in Sources */,
 				69D5976D1E342EBD006029BD /* SafeJsonObject.swift in Sources */,
 				699170DF1E39C93400175B0A /* SelectMenuController.swift in Sources */,
 				69D597771E34309D006029BD /* RangeOptionCell.swift in Sources */,
@@ -348,6 +371,7 @@
 				69D597731E342FD5006029BD /* BaseCell.swift in Sources */,
 				69047B581E3DC7750017CC20 /* BarChartWithFormatter.swift in Sources */,
 				699170D81E39C62E00175B0A /* ReportOptionExtensionForMenu.swift in Sources */,
+				69C8E1611E45716500B9BEAF /* HomeController.swift in Sources */,
 				69C67D011E35E66A00CDEB89 /* SwitchCell.swift in Sources */,
 				69D5976F1E342F70006029BD /* Helpers.swift in Sources */,
 				699170D11E3753BB00175B0A /* Visit.swift in Sources */,

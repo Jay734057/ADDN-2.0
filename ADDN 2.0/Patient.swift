@@ -10,7 +10,6 @@ import UIKit
 
 class Patient: SafeJsonObject {
     var id: NSNumber?
-    var active: Bool?
     var age_at_export_in_days: NSNumber?
     var diabetes_duration_in_days: NSNumber?
     var diabetes_type_other: String?

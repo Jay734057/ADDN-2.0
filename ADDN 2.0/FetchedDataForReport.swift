@@ -8,8 +8,8 @@
 
 import UIKit
 
-class FetchedData: NSObject {
-    var local_id_id = [Int]()
+class FetchedDataForReport: NSObject {
+    var local_id_ids = [Int]()
     var visits = [Visit]()
     var patients = [Patient]()
 }

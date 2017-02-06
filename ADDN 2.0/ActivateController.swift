@@ -47,17 +47,61 @@ class ActivateController: UIViewController,UITextFieldDelegate
         button.addTarget(self, action: #selector(handleActivate), for: .touchUpInside)
         return button
     }()
+    
+    lazy var noActiveCodeButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = UIColor.clear
+        button.setTitle("Need new code?", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(handleGetActiveCode), for: .touchUpInside)
+        return button
+    }()
 
+    func handleGetActiveCode() {
+        let alertView = UIAlertController(title: "Active Code", message: "Jay", preferredStyle: .alert)
+        
+        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertView.addAction(alertAction)
+        
+        self.present(alertView, animated: true, completion: {
+            self.activateCodeTextField.text = ""
+        })
+    }
     
     func handleActivate(){
+        
+        view.endEditing(true)
+        
         //should handle the authentication of activate code
         if let activateCode = activateCodeTextField.text {
-            
-            let defaultUser = UserDefaults.standard
-            defaultUser.set(activateCode, forKey: "activateCode")
-            let homeController = ReportOptionController(style: .grouped)
-            let homeNavController = UINavigationController(rootViewController: homeController)
-            present(homeNavController, animated: true, completion: nil)
+            //check if code is valid? then....
+            if activateCode == "Jay"{
+                let defaultUser = UserDefaults.standard
+                defaultUser.set(true, forKey: "activateFlag")
+                //            let reportOptionController = ReportOptionController(style: .grouped)
+                //            let reportOptionNavController = UINavigationController(rootViewController: reportOptionController)
+                let homeController = HomeController()
+                let homeNavController = UINavigationController(rootViewController: homeController)
+                
+                present(homeNavController, animated: true, completion: nil)
+            } else {
+                // code is not valid
+                let defaultUser = UserDefaults.standard
+                defaultUser.set(false, forKey: "activateFlag")
+                //show alert information
+                
+                let alertView = UIAlertController(title: "Invalid Active Code!", message: "Try Again Please", preferredStyle: .alert)
+                
+                let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alertView.addAction(alertAction)
+                
+                self.present(alertView, animated: true, completion: { 
+                    self.activateCodeTextField.text = ""
+                })
+                
+                
+            }
         }
     }
     
@@ -71,11 +115,21 @@ class ActivateController: UIViewController,UITextFieldDelegate
         view.addSubview(profileImageView)
         
         view.addSubview(activateButton)
+        
+        view.addSubview(noActiveCodeButton)
 
         setupInputsContainerView()
         setupActivateButton()
         setupProfileImageView()
+        setupBottomButton()
     
+    }
+    
+    func setupBottomButton() {
+        noActiveCodeButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -12).isActive = true
+        noActiveCodeButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -12).isActive = true
+        noActiveCodeButton.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        noActiveCodeButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1/3).isActive = true
     }
     
     func setupInputsContainerView(){

@@ -44,7 +44,7 @@ class ReportOptionController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Report Options"
+        navigationItem.title = "HbA1c"
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
         navigationController?.navigationBar.tintColor = UIColor.white
@@ -84,6 +84,7 @@ class ReportOptionController: UITableViewController {
         //set up cell with switch
         if indexPath.section == 3 && indexPath.row == 0 {
             let cell = SwitchCell()
+            cell.selectionStyle = .none
             //
             cell.titleLabelWidthAnchorConstraint?.isActive = true
             cell.titleLabelRightAnChorConstraint?.isActive = false
@@ -106,7 +107,7 @@ class ReportOptionController: UITableViewController {
         
         if indexPath.section == 4{
             let cell = SwitchCell()
-            
+            cell.selectionStyle = .none
             //
             cell.titleLabelWidthAnchorConstraint?.isActive = false
             cell.titleLabelRightAnChorConstraint?.isActive = true

@@ -19,7 +19,7 @@ extension ReportOptionController {
         multiSelectController.reportOptionController = self
         
         multiSelectController.navigationItem.title = Constants.SELECTABLE_ITEMS[indexPath.section][indexPath.row]
-        tableView.deselectRow(at: indexPath, animated: true)
+
         navigationController?.pushViewController(multiSelectController, animated: true)
     }
     
@@ -34,7 +34,7 @@ extension ReportOptionController {
         singleSelectController.reportOptionController = self
         
         singleSelectController.navigationItem.title = Constants.SELECTABLE_ITEMS[indexPath.section][indexPath.row]
-        tableView.deselectRow(at: indexPath, animated: true)
+
         navigationController?.pushViewController(singleSelectController, animated: true)
     }
     
@@ -48,7 +48,7 @@ extension ReportOptionController {
         rangeOptionController.reportOptionController = self
         
         rangeOptionController.navigationItem.title = Constants.SELECTABLE_ITEMS[indexPath.section][indexPath.row]
-        tableView.deselectRow(at: indexPath, animated: true)
+
         navigationController?.pushViewController(rangeOptionController, animated: true)
     }
 

@@ -47,27 +47,27 @@ extension ReportOptionController: ChartViewDelegate {
     }
     
     
-    func fetchData() -> FetchedData {
-        let fetchedData = FetchedData()
+    func fetchData() -> FetchedDataForReport {
+        let fetchedData = FetchedDataForReport()
         
         APIservice.sharedInstance.fetchFromURLForVisit(url: generateURLForVisitTable()) { (visits: [Visit]) in
             for visit in visits {
                 if let id = visit.local_id_id {
-                    fetchedData.local_id_id.append(Int(id))
+                    fetchedData.local_id_ids.append(Int(id))
                     fetchedData.visits.append(visit)
                 }
             }
             
-            APIservice.sharedInstance.fetchFromURLForPatient(url: self.generateURLForPatientTable(local_id_id: fetchedData.local_id_id), completion: { (patients: [Patient]) in
-                    fetchedData.local_id_id = [Int]()
+            APIservice.sharedInstance.fetchFromURLForPatient(url: self.generateURLForPatientTable(local_id_id: fetchedData.local_id_ids), completion: { (patients: [Patient]) in
+                    fetchedData.local_id_ids = [Int]()
                 for patient in patients {
                     if let id = patient.local_id_id {
-                        fetchedData.local_id_id.append(Int(id))
+                        fetchedData.local_id_ids.append(Int(id))
                         fetchedData.patients.append(patient)
                     }
                 }
                 
-                fetchedData.visits = fetchedData.visits.filter({ fetchedData.local_id_id.index(of: Int($0.local_id_id!)) != nil })
+                fetchedData.visits = fetchedData.visits.filter({ fetchedData.local_id_ids.index(of: Int($0.local_id_id!)) != nil })
                 
                 self.showChart(fetchedData: fetchedData)
             })
@@ -80,11 +80,11 @@ extension ReportOptionController: ChartViewDelegate {
     
         
     
-    func showChart(fetchedData: FetchedData) {
+    func showChart(fetchedData: FetchedDataForReport) {
         let report = ReportController()
         var views = [UIView]()
         
-        let local_id_id = fetchedData.local_id_id
+        let local_id_id = fetchedData.local_id_ids
         let patients = fetchedData.patients
         let visits = fetchedData.visits
         
@@ -395,7 +395,7 @@ extension ReportOptionController: ChartViewDelegate {
                 
                 var titleForAgeRanges = [String]()
                 for range in self.ranges[0] {
-                    let title: String = (range.0 == Double.leastNormalMagnitude ? "" : range.0.description) + "~" + (range.1 == Double.greatestFiniteMagnitude ? "" : range.1.description)
+                    let title: String = (range.0 == Double.leastNormalMagnitude ? "" : range.0.description) + "~" + (range.1 == Double.greatestFiniteMagnitude ? "" : range.1.description) + " years old"
                     titleForAgeRanges.append(title)
                 }
                 

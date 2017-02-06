@@ -24,7 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         if checkIfActivated() {
-            let homeController = ReportOptionController(style: .grouped)
+//            let reportOptionController = ReportOptionController(style: .grouped)
+//            let reportOptionNavController = UINavigationController(rootViewController: reportOptionController)
+            let homeController = HomeController()
             let homeNavController = UINavigationController(rootViewController: homeController)
             window?.rootViewController = homeNavController
         }else {
@@ -36,9 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func checkIfActivated() -> Bool {
         //????
-        if let code = defaultUser.value(forKey: "activateCode") as? String{
-            print(code)
-            if code == "Jay"{
+        if let flag = defaultUser.value(forKey: "activateFlag") as? Bool{
+            if flag{
                 return true
             } else {
                 return false
