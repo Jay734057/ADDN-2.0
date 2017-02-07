@@ -10,8 +10,6 @@ import UIKit
 
 class DashboardController: UITableViewController {
     
-    let url = "http://localhost:3000/localid?select=id,centre,date_of_export&date_of_last_visit=not.is.null"
-    
     let cellId = "CellId"
     
     override func viewDidLoad() {
@@ -37,6 +35,8 @@ class DashboardController: UITableViewController {
     var centersWithIdOfPatientsAndUpdatedDate : [String:([Int],String)]?
     
     func fetchData() {
+        let url = Constants.URL_PREFIX + "localid?select=id,centre,date_of_export&date_of_last_visit=not.is.null"
+        
         APIservice.sharedInstance.fetchFromURLForLocalId(url: url) { (localIds: [LocalID]) in
             self.centersWithIdOfPatientsAndUpdatedDate = [String:([Int],String)]()
             for localId in localIds {

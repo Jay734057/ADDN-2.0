@@ -12,7 +12,7 @@ import Charts
 extension ReportOptionController: ChartViewDelegate {
     
     func generateURLForPatientTable(local_id_id: [Int]) -> String {
-        var urlForPatientTable = "http://localhost:3000/patient?order=local_id_id&select=gender,age_at_export_in_days,diabetes_duration_in_days,diabetes_type_other,diabetes_type_value,local_id_id&active=eq.true"
+        var urlForPatientTable = Constants.URL_PREFIX + "patient?order=local_id_id&select=gender,age_at_export_in_days,diabetes_duration_in_days,diabetes_type_other,diabetes_type_value,local_id_id&active=eq.true"
         
         if local_id_id.count > 0 {
             urlForPatientTable = urlForPatientTable + "&local_id_id=in."
@@ -41,7 +41,7 @@ extension ReportOptionController: ChartViewDelegate {
     }
     
     func generateURLForVisitTable() -> String {
-        let urlForVisitTable = "http://localhost:3000/visit?order=local_id_id&select=hba1c_iffc,hba1c_ngsp,insulin_regimen,local_id_id&diagnosis_visit=eq.false&days_before_export=lte.365&hba1c_iffc=not.is.null"
+        let urlForVisitTable = Constants.URL_PREFIX + "visit?order=local_id_id&select=hba1c_iffc,hba1c_ngsp,insulin_regimen,local_id_id&diagnosis_visit=eq.false&days_before_export=lte.365&hba1c_iffc=not.is.null"
         
         return urlForVisitTable
     }

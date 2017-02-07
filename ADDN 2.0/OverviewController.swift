@@ -33,7 +33,7 @@ class OverviewController: UITableViewController {
     }
     
     func generateURLForPatientTable(local_id_id: [Int]) -> String {
-        var urlForPatientTable = "http://localhost:3000/patient?order=local_id_id&select=local_id_id,diabetes_type_value&active=not.eq.false"
+        var urlForPatientTable = Constants.URL_PREFIX + "patient?order=local_id_id&select=local_id_id,diabetes_type_value&active=not.eq.false"
         
         if local_id_id.count > 0 {
             urlForPatientTable = urlForPatientTable + "&local_id_id=in."
