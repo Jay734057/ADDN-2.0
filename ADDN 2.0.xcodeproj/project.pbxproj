@@ -40,6 +40,7 @@
 		69D597791E3430D1006029BD /* FetchedDataForReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D597781E3430D1006029BD /* FetchedDataForReport.swift */; };
 		69D597A11E34351C006029BD /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D5979C1E343510006029BD /* Charts.framework */; };
 		69D597A21E34351C006029BD /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 69D5979C1E343510006029BD /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		69DDA9301E4C07DE00814F8B /* jwt_token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DDA92F1E4C07DE00814F8B /* jwt_token.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +123,7 @@
 		69D597761E34309D006029BD /* RangeOptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeOptionCell.swift; sourceTree = "<group>"; };
 		69D597781E3430D1006029BD /* FetchedDataForReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedDataForReport.swift; sourceTree = "<group>"; };
 		69D597951E34350F006029BD /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../Charts-master copy/Charts.xcodeproj"; sourceTree = "<group>"; };
+		69DDA92F1E4C07DE00814F8B /* jwt_token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = jwt_token.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +202,7 @@
 				699170CC1E37507400175B0A /* Patient.swift */,
 				699170D01E3753BB00175B0A /* Visit.swift */,
 				69C8E1641E46ACF700B9BEAF /* LocalID.swift */,
+				69DDA92F1E4C07DE00814F8B /* jwt_token.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				69C8E1691E46B02000B9BEAF /* FetchedDataForDashboard.swift in Sources */,
 				69C67CF21E343CFB00CDEB89 /* ActivateController.swift in Sources */,
 				69D597791E3430D1006029BD /* FetchedDataForReport.swift in Sources */,
+				69DDA9301E4C07DE00814F8B /* jwt_token.swift in Sources */,
 				69C67CFB1E358DE600CDEB89 /* MultiSelectMenuController.swift in Sources */,
 				69047B5B1E3DCC9C0017CC20 /* PieChart.swift in Sources */,
 				69C8E16B1E4712A200B9BEAF /* DashboardCell.swift in Sources */,

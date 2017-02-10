@@ -24,8 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         if checkIfActivated() {
-//            let reportOptionController = ReportOptionController(style: .grouped)
-//            let reportOptionNavController = UINavigationController(rootViewController: reportOptionController)
             let homeController = HomeController()
             let homeNavController = UINavigationController(rootViewController: homeController)
             window?.rootViewController = homeNavController

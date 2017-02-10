@@ -73,15 +73,39 @@ class APIservice: NSObject {
             }
         }).resume()
     }
-
-
     
-//    func getJSON(urlToRequest: String) -> NSData{
-//        do {
-//            return NSData(contentsOf: URL(string: urlToRequest)!)
-//        } catch let error {
-//            print(error)
-//        }
-//    }
+    func validateToken(secret:String,  completion:@escaping (jwt_token)->()) {
+        
+        let post = "code=\(secret)"
+        var postData = post.data(using: String.Encoding.ascii, allowLossyConversion: true)
+        let postLength = "\(postData?.count)"
+        var request = URLRequest(url: URL(string:Constants.URL_PREFIX + "rpc/jwt_generator")!)
+        
+        request.httpMethod = "POST"
+        request.setValue(postLength, forHTTPHeaderField: "Content-Length")
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpBody = postData
+        
+        URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+            if error != nil {
+                print(error!)
+                return
+            }
+            do {
+                if let unwrapped = data,
+                    let json = try JSONSerialization.jsonObject(with: unwrapped, options: .mutableContainers) as? [[String: AnyObject]] {
+                    let messages = json.map({return jwt_token(dictionary: $0)})
+                    if let message = messages.first {
+                        DispatchQueue.main.async(execute: {
+                            completion(message)
+                        })
+                    }
+                }
+
+            } catch let error {
+                print(error)
+            }
+        }).resume()
+    }
 }
 

@@ -76,32 +76,33 @@ class ActivateController: UIViewController,UITextFieldDelegate
         //should handle the authentication of activate code
         if let activateCode = activateCodeTextField.text {
             //check if code is valid? then....
-            if activateCode == "Jay"{
-                let defaultUser = UserDefaults.standard
-                defaultUser.set(true, forKey: "activateFlag")
-                //            let reportOptionController = ReportOptionController(style: .grouped)
-                //            let reportOptionNavController = UINavigationController(rootViewController: reportOptionController)
-                let homeController = HomeController()
-                let homeNavController = UINavigationController(rootViewController: homeController)
+            APIservice.sharedInstance.validateToken(secret: activateCode, completion: { (jwt: jwt_token) in
+                if jwt.token == Constants.VALID_TOKEN {
+                    let defaultUser = UserDefaults.standard
+                    defaultUser.set(true, forKey: "activateFlag")
+
+                    let homeController = HomeController()
+                    let homeNavController = UINavigationController(rootViewController: homeController)
+                    
+                    self.present(homeNavController, animated: true, completion: nil)
+                } else {
+                    // code is not valid
+                    let defaultUser = UserDefaults.standard
+                    defaultUser.set(false, forKey: "activateFlag")
+                    //show alert information
+                    
+                    let alertView = UIAlertController(title: "Invalid Active Code!", message: "Try Again Please", preferredStyle: .alert)
+                    
+                    let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alertView.addAction(alertAction)
+                    
+                    self.present(alertView, animated: true, completion: {
+                        self.activateCodeTextField.text = ""
+                    })
+                }
                 
-                present(homeNavController, animated: true, completion: nil)
-            } else {
-                // code is not valid
-                let defaultUser = UserDefaults.standard
-                defaultUser.set(false, forKey: "activateFlag")
-                //show alert information
-                
-                let alertView = UIAlertController(title: "Invalid Active Code!", message: "Try Again Please", preferredStyle: .alert)
-                
-                let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                alertView.addAction(alertAction)
-                
-                self.present(alertView, animated: true, completion: { 
-                    self.activateCodeTextField.text = ""
-                })
-                
-                
-            }
+            })
+            
         }
     }
     
