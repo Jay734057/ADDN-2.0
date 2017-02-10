@@ -14,8 +14,8 @@
 		699170D11E3753BB00175B0A /* Visit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699170D01E3753BB00175B0A /* Visit.swift */; };
 		699170D31E3835E300175B0A /* SingleSelectMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699170D21E3835E300175B0A /* SingleSelectMenuController.swift */; };
 		699170D61E39B82F00175B0A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699170D51E39B82F00175B0A /* Constants.swift */; };
-		699170D81E39C62E00175B0A /* ReportOptionExtensionForMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699170D71E39C62E00175B0A /* ReportOptionExtensionForMenu.swift */; };
-		699170DA1E39C69F00175B0A /* ReportOptionExtensionForReportGeneration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699170D91E39C69F00175B0A /* ReportOptionExtensionForReportGeneration.swift */; };
+		699170D81E39C62E00175B0A /* ShowMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699170D71E39C62E00175B0A /* ShowMenu.swift */; };
+		699170DA1E39C69F00175B0A /* FetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699170D91E39C69F00175B0A /* FetchData.swift */; };
 		699170DF1E39C93400175B0A /* SelectMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699170DE1E39C93400175B0A /* SelectMenuController.swift */; };
 		699170E31E39CE0F00175B0A /* ReportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699170E21E39CE0F00175B0A /* ReportController.swift */; };
 		69C67CF01E34397C00CDEB89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69C67CEE1E34397C00CDEB89 /* LaunchScreen.storyboard */; };
@@ -41,6 +41,14 @@
 		69D597A11E34351C006029BD /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D5979C1E343510006029BD /* Charts.framework */; };
 		69D597A21E34351C006029BD /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 69D5979C1E343510006029BD /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		69DDA9301E4C07DE00814F8B /* jwt_token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DDA92F1E4C07DE00814F8B /* jwt_token.swift */; };
+		69DDA9361E4D952200814F8B /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DDA9351E4D952200814F8B /* MenuCell.swift */; };
+		69DDA93A1E4DA94D00814F8B /* GenderReportGeneration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DDA9391E4DA94D00814F8B /* GenderReportGeneration.swift */; };
+		69DDA93C1E4DAB5200814F8B /* AgeReportGeneration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DDA93B1E4DAB5200814F8B /* AgeReportGeneration.swift */; };
+		69DDA93E1E4DABF400814F8B /* InsulinRegimenReportGeneration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DDA93D1E4DABF400814F8B /* InsulinRegimenReportGeneration.swift */; };
+		69DDA9401E4DAC1100814F8B /* DiabetesReportGeneration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DDA93F1E4DAC1100814F8B /* DiabetesReportGeneration.swift */; };
+		69DDA9421E4DB23400814F8B /* Tabular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DDA9411E4DB23400814F8B /* Tabular.swift */; };
+		69DDA9441E4DE62200814F8B /* ReportTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DDA9431E4DE62200814F8B /* ReportTitleView.swift */; };
+		69DDA9461E4DFC5B00814F8B /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DDA9451E4DFC5B00814F8B /* PageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,8 +104,8 @@
 		699170D01E3753BB00175B0A /* Visit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Visit.swift; sourceTree = "<group>"; };
 		699170D21E3835E300175B0A /* SingleSelectMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleSelectMenuController.swift; sourceTree = "<group>"; };
 		699170D51E39B82F00175B0A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../Constants.swift; sourceTree = "<group>"; };
-		699170D71E39C62E00175B0A /* ReportOptionExtensionForMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportOptionExtensionForMenu.swift; sourceTree = "<group>"; };
-		699170D91E39C69F00175B0A /* ReportOptionExtensionForReportGeneration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportOptionExtensionForReportGeneration.swift; sourceTree = "<group>"; };
+		699170D71E39C62E00175B0A /* ShowMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowMenu.swift; sourceTree = "<group>"; };
+		699170D91E39C69F00175B0A /* FetchData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchData.swift; sourceTree = "<group>"; };
 		699170DE1E39C93400175B0A /* SelectMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMenuController.swift; sourceTree = "<group>"; };
 		699170E21E39CE0F00175B0A /* ReportController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportController.swift; sourceTree = "<group>"; };
 		69C67CEF1E34397C00CDEB89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -124,6 +132,14 @@
 		69D597781E3430D1006029BD /* FetchedDataForReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedDataForReport.swift; sourceTree = "<group>"; };
 		69D597951E34350F006029BD /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../Charts-master copy/Charts.xcodeproj"; sourceTree = "<group>"; };
 		69DDA92F1E4C07DE00814F8B /* jwt_token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = jwt_token.swift; sourceTree = "<group>"; };
+		69DDA9351E4D952200814F8B /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
+		69DDA9391E4DA94D00814F8B /* GenderReportGeneration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenderReportGeneration.swift; sourceTree = "<group>"; };
+		69DDA93B1E4DAB5200814F8B /* AgeReportGeneration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgeReportGeneration.swift; sourceTree = "<group>"; };
+		69DDA93D1E4DABF400814F8B /* InsulinRegimenReportGeneration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsulinRegimenReportGeneration.swift; sourceTree = "<group>"; };
+		69DDA93F1E4DAC1100814F8B /* DiabetesReportGeneration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiabetesReportGeneration.swift; sourceTree = "<group>"; };
+		69DDA9411E4DB23400814F8B /* Tabular.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tabular.swift; sourceTree = "<group>"; };
+		69DDA9431E4DE62200814F8B /* ReportTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportTitleView.swift; sourceTree = "<group>"; };
+		69DDA9451E4DFC5B00814F8B /* PageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +160,7 @@
 				69047B571E3DC7750017CC20 /* BarChartWithFormatter.swift */,
 				69047B5A1E3DCC9C0017CC20 /* PieChart.swift */,
 				69047B5C1E3DCF3E0017CC20 /* LineChartWithFormatter.swift */,
+				69DDA9411E4DB23400814F8B /* Tabular.swift */,
 			);
 			name = ChartViews;
 			sourceTree = "<group>";
@@ -214,6 +231,8 @@
 				69D597761E34309D006029BD /* RangeOptionCell.swift */,
 				69C67D001E35E66A00CDEB89 /* SwitchCell.swift */,
 				69C8E16A1E4712A200B9BEAF /* DashboardCell.swift */,
+				69DDA9351E4D952200814F8B /* MenuCell.swift */,
+				69DDA9431E4DE62200814F8B /* ReportTitleView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -228,9 +247,14 @@
 				69C8E1661E46AE5A00B9BEAF /* DashboardController.swift */,
 				69C8E16C1E47190B00B9BEAF /* OverviewController.swift */,
 				69D597741E34305D006029BD /* ReportOptionController.swift */,
-				699170D71E39C62E00175B0A /* ReportOptionExtensionForMenu.swift */,
-				699170D91E39C69F00175B0A /* ReportOptionExtensionForReportGeneration.swift */,
+				699170D71E39C62E00175B0A /* ShowMenu.swift */,
+				699170D91E39C69F00175B0A /* FetchData.swift */,
+				69DDA9391E4DA94D00814F8B /* GenderReportGeneration.swift */,
+				69DDA93B1E4DAB5200814F8B /* AgeReportGeneration.swift */,
+				69DDA93D1E4DABF400814F8B /* InsulinRegimenReportGeneration.swift */,
+				69DDA93F1E4DAC1100814F8B /* DiabetesReportGeneration.swift */,
 				699170E21E39CE0F00175B0A /* ReportController.swift */,
+				69DDA9451E4DFC5B00814F8B /* PageView.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -351,17 +375,24 @@
 			files = (
 				69C8E16D1E47190B00B9BEAF /* OverviewController.swift in Sources */,
 				699170CD1E37507400175B0A /* Patient.swift in Sources */,
+				69DDA9361E4D952200814F8B /* MenuCell.swift in Sources */,
 				699170D31E3835E300175B0A /* SingleSelectMenuController.swift in Sources */,
-				699170DA1E39C69F00175B0A /* ReportOptionExtensionForReportGeneration.swift in Sources */,
+				699170DA1E39C69F00175B0A /* FetchData.swift in Sources */,
+				69DDA93A1E4DA94D00814F8B /* GenderReportGeneration.swift in Sources */,
 				69C67CFF1E35DD1F00CDEB89 /* RangeMenuController.swift in Sources */,
+				69DDA9461E4DFC5B00814F8B /* PageView.swift in Sources */,
 				69C8E1671E46AE5A00B9BEAF /* DashboardController.swift in Sources */,
 				69D597711E342F95006029BD /* APIservice.swift in Sources */,
 				69D597751E34305D006029BD /* ReportOptionController.swift in Sources */,
+				69DDA93E1E4DABF400814F8B /* InsulinRegimenReportGeneration.swift in Sources */,
 				699170D61E39B82F00175B0A /* Constants.swift in Sources */,
 				69D597581E342C1F006029BD /* AppDelegate.swift in Sources */,
+				69DDA9421E4DB23400814F8B /* Tabular.swift in Sources */,
 				69C8E1691E46B02000B9BEAF /* FetchedDataForDashboard.swift in Sources */,
 				69C67CF21E343CFB00CDEB89 /* ActivateController.swift in Sources */,
+				69DDA9441E4DE62200814F8B /* ReportTitleView.swift in Sources */,
 				69D597791E3430D1006029BD /* FetchedDataForReport.swift in Sources */,
+				69DDA9401E4DAC1100814F8B /* DiabetesReportGeneration.swift in Sources */,
 				69DDA9301E4C07DE00814F8B /* jwt_token.swift in Sources */,
 				69C67CFB1E358DE600CDEB89 /* MultiSelectMenuController.swift in Sources */,
 				69047B5B1E3DCC9C0017CC20 /* PieChart.swift in Sources */,
@@ -374,7 +405,8 @@
 				699170E31E39CE0F00175B0A /* ReportController.swift in Sources */,
 				69D597731E342FD5006029BD /* BaseCell.swift in Sources */,
 				69047B581E3DC7750017CC20 /* BarChartWithFormatter.swift in Sources */,
-				699170D81E39C62E00175B0A /* ReportOptionExtensionForMenu.swift in Sources */,
+				699170D81E39C62E00175B0A /* ShowMenu.swift in Sources */,
+				69DDA93C1E4DAB5200814F8B /* AgeReportGeneration.swift in Sources */,
 				69C8E1611E45716500B9BEAF /* HomeController.swift in Sources */,
 				69C67D011E35E66A00CDEB89 /* SwitchCell.swift in Sources */,
 				69D5976F1E342F70006029BD /* Helpers.swift in Sources */,

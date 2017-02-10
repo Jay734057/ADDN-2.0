@@ -34,6 +34,8 @@ class RangeMenuController: UITableViewController {
         tableView.allowsMultipleSelectionDuringEditing = true
         
         tableView.keyboardDismissMode = .onDrag
+        
+        
     }
     
     func setupBarButton() {
@@ -41,7 +43,9 @@ class RangeMenuController: UITableViewController {
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backBarButton
 
         let addBarButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(handleAdd))
-        navigationItem.rightBarButtonItem = addBarButton
+        let removeAllBarButton = UIBarButtonItem(title: "Remove All", style: .plain, target: self, action: #selector(handleRemoveAll))
+        navigationItem.rightBarButtonItems = [addBarButton, removeAllBarButton]
+//        navigationItem.rightBarButtonItem = addBarButton
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -69,6 +73,15 @@ class RangeMenuController: UITableViewController {
         numberOfRanges += 1
         ranges.append((Double.leastNormalMagnitude,Double.greatestFiniteMagnitude))
         tableView.insertRows(at: [indexPath], with: .top)
+    }
+    
+    func handleRemoveAll() {
+        numberOfRanges = 0
+        ranges = []
+        DispatchQueue.main.async { 
+            self.tableView.reloadData()
+        }
+        
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {

@@ -25,7 +25,7 @@ class DashboardController: UITableViewController {
         
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
-        tableView.register(UITableViewCell.self , forCellReuseIdentifier: cellId)
+        tableView.register(MenuCell.self , forCellReuseIdentifier: cellId)
         
         fetchData()
         
@@ -59,6 +59,10 @@ class DashboardController: UITableViewController {
         return 1
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let centers = centersWithIdOfPatientsAndUpdatedDate?.keys {
             return centers.count
@@ -68,23 +72,27 @@ class DashboardController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: cellId)
+        
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! MenuCell
+        cell.profileImageView.image = UIImage(named: "h\(indexPath.row)")
         cell.accessoryType = .disclosureIndicator
+        
         if let centers = centersWithIdOfPatientsAndUpdatedDate?.keys {
             let centersArray = [String](centers)
-            cell.textLabel?.text = centersArray[indexPath.row]
+            cell.menuTextLabel.text = centersArray[indexPath.row]
         }
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let overviewController = OverviewController(style: .grouped)
-        if let text = tableView.cellForRow(at: indexPath)?.textLabel?.text {
-            overviewController.navigationItem.title = text
-            overviewController.localIds = centersWithIdOfPatientsAndUpdatedDate?[text]?.0
-            overviewController.lastUpdatedDate = centersWithIdOfPatientsAndUpdatedDate?[text]?.1
-        }
+        let text = (tableView.cellForRow(at: indexPath) as! MenuCell).menuTextLabel.text
 
+        overviewController.navigationItem.title = text
+        overviewController.localIds = centersWithIdOfPatientsAndUpdatedDate?[text!]?.0
+        overviewController.lastUpdatedDate = centersWithIdOfPatientsAndUpdatedDate?[text!]?.1
+        
         navigationController?.pushViewController(overviewController, animated: true)
 
     }

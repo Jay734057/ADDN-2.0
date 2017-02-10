@@ -17,6 +17,12 @@ class ReportController: UIViewController {
         }
     }
     
+    var reportTitle: String? {
+        didSet {
+            reportTitleLabel.text = reportTitle
+        }
+    }
+    
     var views: [UIView]?
 
     override func viewDidLoad() {
@@ -40,16 +46,33 @@ class ReportController: UIViewController {
         return scrollView
     }()
     
+    let reportTitleLabel : UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 24)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     func setupView() {
+        
         view.addSubview(scrollView)
         //xywh
         scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        scrollView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
         scrollView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         scrollView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
         
         if let charts = views {
-            scrollView.contentSize = CGSize(width: self.view.bounds.size.width, height: CGFloat(charts.count * 250 + 32))
+            scrollView.contentSize = CGSize(width: self.view.bounds.size.width, height: CGFloat(charts.count * 300 + 20))
+            
+            scrollView.addSubview(reportTitleLabel)
+            //
+            reportTitleLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
+            reportTitleLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 0).isActive = true
+            reportTitleLabel.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -36).isActive = true
+            reportTitleLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+            
+            var topAnchor = reportTitleLabel.bottomAnchor
             
             for i in 0..<charts.count {
                 
@@ -57,10 +80,25 @@ class ReportController: UIViewController {
                 
                 scrollView.addSubview(charts[i])
                 //xywh
+                
                 charts[i].centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
-                charts[i].topAnchor.constraint(equalTo: scrollView.topAnchor, constant: CGFloat(i*250))   .isActive = true
-                charts[i].widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.9).isActive = true
-                charts[i].heightAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.6).isActive = true
+                charts[i].topAnchor.constraint(equalTo: topAnchor, constant: 12).isActive = true
+                
+                var multiplierForWidth:CGFloat = 0.0
+                var multiplierForHeight:CGFloat = 0.0
+                if type(of: charts[i]).description() == "ADDN_2_0.Tabular" {
+                    multiplierForWidth = 0.98
+                    multiplierForHeight = 0.8
+                }else {
+                    multiplierForWidth = 0.9
+                    multiplierForHeight = 0.6
+                }
+                
+                charts[i].widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: multiplierForWidth).isActive = true
+                charts[i].heightAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: multiplierForHeight).isActive = true
+                
+                topAnchor = charts[i].bottomAnchor
+                
             }
         }
     }

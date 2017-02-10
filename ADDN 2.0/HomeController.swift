@@ -25,7 +25,7 @@ class HomeController: UITableViewController {
         navigationController?.navigationBar.tintColor = UIColor.white
         navigationController?.navigationBar.barTintColor = UIColor.rgb(red: 61, green: 91, blue: 151)
         
-        tableView.register(UITableViewCell.self , forCellReuseIdentifier: cellId)
+        tableView.register(MenuCell.self , forCellReuseIdentifier: cellId)
         
         setupView()
         }
@@ -39,20 +39,22 @@ class HomeController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Reports"
-    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menu.count
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: cellId)
-        cell.textLabel?.text = menu[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! MenuCell
+        cell.menuTextLabel.text = menu[indexPath.row]
+        cell.profileImageView.image = UIImage(named: menu[indexPath.row])
+        
         cell.accessoryType = .disclosureIndicator
-//        cell.textLabel?.font = UIFont.systemFont(ofSize: 24)
+
         switch indexPath.row {
         case 0:
             cell.selectionStyle = .gray
@@ -60,7 +62,7 @@ class HomeController: UITableViewController {
             cell.selectionStyle = .gray
         default:
             cell.selectionStyle = .none
-            cell.textLabel?.textColor = UIColor.lightGray
+            cell.menuTextLabel.textColor = UIColor.lightGray
         }
         
         return cell

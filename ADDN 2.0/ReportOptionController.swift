@@ -129,6 +129,8 @@ class ReportOptionController: UITableViewController {
             default:
                 cell.switchButton.setOn(FlagForInsulinRegimenBreakDown, animated: true)
                 switchInsulinRegimenBreakDownByAge = cell.switchButton
+                cell.switchButton.isEnabled = false
+                cell.titleLabel.textColor = UIColor.lightGray
                 cell.switchButton.addTarget(self, action: #selector(handleSwitchForInsulinRegimenBreakDown), for: .valueChanged)
             }
             
