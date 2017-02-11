@@ -28,8 +28,6 @@ class ReportController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.white
-        
         let backBarButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: nil)
         self.navigationController?.navigationBar.topItem?.backBarButtonItem=backBarButton
         
@@ -63,14 +61,14 @@ class ReportController: UIViewController {
         scrollView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
         
         if let charts = views {
-            scrollView.contentSize = CGSize(width: self.view.bounds.size.width, height: CGFloat(charts.count * 300 + 20))
+            scrollView.contentSize = CGSize(width: self.view.bounds.size.width, height: CGFloat(Double((views?.count)!) * Double(view.frame.width) * 0.8))
             
             scrollView.addSubview(reportTitleLabel)
             //
             reportTitleLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
             reportTitleLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 0).isActive = true
             reportTitleLabel.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -36).isActive = true
-            reportTitleLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+            reportTitleLabel.heightAnchor.constraint(equalToConstant: 60).isActive = true
             
             var topAnchor = reportTitleLabel.bottomAnchor
             
@@ -82,7 +80,12 @@ class ReportController: UIViewController {
                 //xywh
                 
                 charts[i].centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
-                charts[i].topAnchor.constraint(equalTo: topAnchor, constant: 12).isActive = true
+                if i == 0 {
+                    charts[i].topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
+                }else {
+                    charts[i].topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true
+                }
+                
                 
                 var multiplierForWidth:CGFloat = 0.0
                 var multiplierForHeight:CGFloat = 0.0
@@ -90,7 +93,7 @@ class ReportController: UIViewController {
                     multiplierForWidth = 0.98
                     multiplierForHeight = 0.8
                 }else {
-                    multiplierForWidth = 0.9
+                    multiplierForWidth = 0.98
                     multiplierForHeight = 0.6
                 }
                 

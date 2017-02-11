@@ -34,16 +34,15 @@ extension ReportOptionController {
                 }
             }
             
-            views.append(PieChart(dataPoints: Constants.SELECTABLE_GENDERS, values: numbers, title: "Gender Distribution"))
-            
             var groupedValues = [[String]]()
             for i in 0..<numbers.count {
                 groupedValues.append([numbers[i].description, String(format: "%.2f",(Double(totalAgesInDays[i])/Double(numbers[i])/365)),String(format: "%.2f",(Double(totalDurationsInDays[i])/Double(numbers[i])/365)),String(format: "%.2f",HbA1cRanges[i].average),HbA1cRanges[i].median.description + "0","\(HbA1cRanges[i].min)0~\(HbA1cRanges[i].max)0"])
             }
             
-            
+            //table
             views.append(Tabular(dataPoint: ["Total number", "Mean Age (years)","Mean Duration (years)","Mean HbA1c","Median HbA1c","HbA1c Range"], groupedvalues: groupedValues, titles: Constants.TITLES_FOR_GENDERS))
-            
+            //pie
+            views.append(PieChart(dataPoints: Constants.SELECTABLE_GENDERS, values: numbers, title: "Gender Distribution"))
 
             if self.ranges[3].count > 0 {
                 

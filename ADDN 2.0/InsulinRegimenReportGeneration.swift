@@ -20,6 +20,7 @@ extension ReportOptionController{
         
         //        Insulin Regimen
         if FlagForInsulinRegimenBreakDown && self.ranges[0].count > 0{
+            //break down is not finished
             var numbers = [[Double]](repeating: [Double](repeating: 0.0, count: Constants.SELECTABLE_INSULIN_REGIMEN.count), count: self.ranges[0].count)
             var totalAgesInDays = [[Double]](repeating: [Double](repeating: 0.0, count: Constants.SELECTABLE_INSULIN_REGIMEN.count), count: self.ranges[0].count)
             var totalDurationsInDays = [[Double]](repeating: [Double](repeating: 0.0, count: Constants.SELECTABLE_INSULIN_REGIMEN.count), count: self.ranges[0].count)
@@ -45,6 +46,14 @@ extension ReportOptionController{
                                 HbA1cRanges[j][index].append(Double(
                                     FlagForHbA1cTypes ? (visits[i].hba1c_iffc)! : (visits[i].hba1c_ngsp)!
                                 ))
+                            }else {
+                                numbers[j][Constants.SELECTABLE_INSULIN_REGIMEN.count - 1] += 1
+                                totalAgesInDays[j][Constants.SELECTABLE_INSULIN_REGIMEN.count - 1] += Double(patients[i].age_at_export_in_days!)
+                                totalDurationsInDays[j][Constants.SELECTABLE_INSULIN_REGIMEN.count - 1] += Double(patients[i].diabetes_duration_in_days!)
+                                HbA1cRanges[j][Constants.SELECTABLE_INSULIN_REGIMEN.count - 1].append(Double(
+                                    FlagForHbA1cTypes ? (visits[i].hba1c_iffc)! : (visits[i].hba1c_ngsp)!
+                                ))
+
                             }
                         }
                     }
@@ -91,6 +100,8 @@ extension ReportOptionController{
                     if value > min && value <= max {
                         if let insulinRegimen = visits[j].insulin_regimen, let index = Constants.TITLES_FOR_INSULIN_REGIMEN.index(of: insulinRegimen) {
                             groupedvalues[index][i] += 1
+                        }else {
+                            groupedvalues[Constants.SELECTABLE_INSULIN_REGIMEN.count - 1][i] += 1
                         }
                     }
                 }
@@ -128,6 +139,13 @@ extension ReportOptionController{
                     HbA1cRanges[index].append(Double(
                             FlagForHbA1cTypes ? (visits[i].hba1c_iffc)! : (visits[i].hba1c_ngsp)!
                     ))
+                } else {
+                    numbers[Constants.SELECTABLE_INSULIN_REGIMEN.count - 1] += 1
+                    totalAgesInDays[Constants.SELECTABLE_INSULIN_REGIMEN.count - 1] += Double(patients[i].age_at_export_in_days!)
+                    totalDurationsInDays[Constants.SELECTABLE_INSULIN_REGIMEN.count - 1] += Double(patients[i].diabetes_duration_in_days!)
+                    HbA1cRanges[Constants.SELECTABLE_INSULIN_REGIMEN.count - 1].append(Double(
+                        FlagForHbA1cTypes ? (visits[i].hba1c_iffc)! : (visits[i].hba1c_ngsp)!
+                    ))
                 }
             }
             
@@ -140,8 +158,6 @@ extension ReportOptionController{
                 dataPointsForCharts.append(Constants.SELECTABLE_INSULIN_REGIMEN[selected])
                 valuesForPieChart.append(numbers[selected])
             }
-                
-            views.append(PieChart(dataPoints: dataPointsForCharts, values: valuesForPieChart, title: "Insulin Regimen Distribution"))
             
             var groupedValues = [[String]]()
             for i in selectedIndex {
@@ -149,6 +165,10 @@ extension ReportOptionController{
             }
             
             views.append(Tabular(dataPoint: ["Total number", "Mean Age (years)","Mean Duration (years)","Mean HbA1c","Median HbA1c","HbA1c Range"], groupedvalues: groupedValues, titles: dataPointsForCharts))
+                
+            views.append(PieChart(dataPoints: dataPointsForCharts, values: valuesForPieChart, title: "Insulin Regimen Distribution"))
+            
+            
             
             
             
@@ -165,6 +185,8 @@ extension ReportOptionController{
                         if value > min && value <= max {
                             if let insulinRegimen = visits[j].insulin_regimen, let index = Constants.TITLES_FOR_INSULIN_REGIMEN.index(of: insulinRegimen) {
                                 groupedvalues[index][i] += 1
+                            }else {
+                                groupedvalues[Constants.SELECTABLE_INSULIN_REGIMEN.count - 1][i] += 1
                             }
                         }
                     }

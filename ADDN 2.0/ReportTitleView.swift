@@ -20,7 +20,7 @@ class ReportTitleView: UIView {
     
     let titleLabel : UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 24)
+        label.font = UIFont.systemFont(ofSize: 28)
         label.textAlignment = .center
         return label
     }()

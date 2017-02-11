@@ -10,14 +10,14 @@ import UIKit
 import Charts
 
 class PieChart: PieChartView {
+    
     init(dataPoints: [String], values: [Double], title: String) {
         super.init(frame: CGRect.zero)
         
         self.dataPoints = dataPoints
         self.values = values
         
-        
-        chartDescription?.text = title
+        titleLabel.text = title
         setupView()
     }
     
@@ -44,12 +44,15 @@ class PieChart: PieChartView {
             for i in 0..<dataPoints.count {
                 dataEntries.append(PieChartDataEntry(value: values[i], label: dataPoints[i]))
                 
-                let red = Double(arc4random_uniform(256))
-                let green = Double(arc4random_uniform(256))
-                let blue = Double(arc4random_uniform(256))
-                let color = UIColor(red: CGFloat(red/255), green: CGFloat(green/255), blue: CGFloat(blue/255), alpha: 1)
-                colors.append(color)
+//                let red = Double(arc4random_uniform(256))
+//                let green = Double(arc4random_uniform(256))
+//                let blue = Double(arc4random_uniform(256))
+//                let color = UIColor(red: CGFloat(red/255), green: CGFloat(green/255), blue: CGFloat(blue/255), alpha: 1)
+//                colors.append(color)
+                
             }
+            colors = ChartColorTemplates.colorful() + ChartColorTemplates.joyful()
+
         }
         
         let dataSet = PieChartDataSet(values: dataEntries, label: "")
@@ -69,10 +72,31 @@ class PieChart: PieChartView {
         self.data = data
         
         drawEntryLabelsEnabled = false
+        
 //        drawHoleEnabled = false
         
-        chartDescription?.font = UIFont.systemFont(ofSize: 12)
+        chartDescription?.text = ""
+//        chartDescription?.font = UIFont.systemFont(ofSize: 18)
+        legend.horizontalAlignment = .right
+        legend.verticalAlignment = .center
+        legend.orientation = .vertical
         
         animate(xAxisDuration: 0.0, yAxisDuration: 1.0)
+        
+        addSubview(titleLabel)
+        //
+        titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 6).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: -16).isActive = true
+        titleLabel.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -12).isActive = true
+        titleLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
+    
+    let titleLabel : UILabel = {
+        let label = UILabel()
+        label.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1)
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
 }

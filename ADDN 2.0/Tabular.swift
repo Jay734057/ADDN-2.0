@@ -95,7 +95,7 @@ class Tabular : UITableView,UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 36))
+        let header = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 8, height: 30))
         
         header.addSubview(headerLabel)
         //
@@ -152,7 +152,6 @@ class Tabular : UITableView,UITableViewDelegate,UITableViewDataSource {
     func handlePrev() {
         if let count = titles?.count{
             index = (index - 1 + count) % count
-            print(456)
             DispatchQueue.main.async {
                 self.reloadData()
             }
@@ -162,7 +161,6 @@ class Tabular : UITableView,UITableViewDelegate,UITableViewDataSource {
     func handleNext() {
         if let count = titles?.count{
             index = (index + 1) % count
-            print(123)
             DispatchQueue.main.async {
                 self.reloadData()
             }

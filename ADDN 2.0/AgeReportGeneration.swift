@@ -52,51 +52,48 @@ extension ReportOptionController {
                 }
                 
                 var titleForAgeRanges = [String]()
+                
+                
+                
                 for range in self.ranges[0] {
                     let title: String = (range.0 == Double.leastNormalMagnitude ? "" : range.0.description) + "~" + (range.1 == Double.greatestFiniteMagnitude ? "" : range.1.description)
                     titleForAgeRanges.append(title)
                 }
                 
+                if self.selectedAttributeIndexes[0].index(of: 0) != nil || selectedAttributeIndexes[0].count == 0 {
+                    var groupedValuesForMale = [[String]]()
+                    for i in 0..<numbers[0].count {
+                        groupedValuesForMale.append([numbers[0][i].description, String(format: "%.2f",(Double(totalAgesInDays[0][i])/Double(numbers[0][i])/365)),String(format: "%.2f",(Double(totalDurationsInDays[0][i])/Double(numbers[0][i])/365)),String(format: "%.2f",HbA1cRanges[0][i].average),HbA1cRanges[0][i].median.description + "0","\(HbA1cRanges[0][i].min)0~\(HbA1cRanges[0][i].max)0"])
+                    }
+                    
+                    var maleTitlesForAges = [String]()
+                    for title in titleForAgeRanges {
+                        maleTitlesForAges.append("MALE: " + title)
+                    }
+                    views.append(Tabular(dataPoint: ["Total number", "Mean Age (years)","Mean Duration (years)","Mean HbA1c","Median HbA1c","HbA1c Range"], groupedvalues: groupedValuesForMale, titles: maleTitlesForAges))
+                }
+                
+                if self.selectedAttributeIndexes[0].index(of: 1) != nil || selectedAttributeIndexes[0].count == 0 {
+                    var groupedValuesForFeMale = [[String]]()
+                    for i in 0..<numbers[1].count {
+                        groupedValuesForFeMale.append([numbers[1][i].description, String(format: "%.2f",(Double(totalAgesInDays[1][i])/Double(numbers[1][i])/365)),String(format: "%.2f",(Double(totalDurationsInDays[1][i])/Double(numbers[1][i])/365)),String(format: "%.2f",HbA1cRanges[0][i].average),HbA1cRanges[1][i].median.description + "0","\(HbA1cRanges[1][i].min)0~\(HbA1cRanges[1][i].max)0"])
+                    }
+                    
+                    var femaleTitlesForAges = [String]()
+                    for title in titleForAgeRanges {
+                        femaleTitlesForAges.append("FEMALE: " + title)
+                    }
+                    views.append(Tabular(dataPoint: ["Total number", "Mean Age (years)","Mean Duration (years)","Mean HbA1c","Median HbA1c","HbA1c Range"], groupedvalues: groupedValuesForFeMale, titles: femaleTitlesForAges))
+                }
+                
                 let titleForBarChart = titleForAgeRanges
                 
-                
-                views.append(BarChartWithFormatter(dataPoints: titleForAgeRanges, groupedValues: numbers, labels: Constants.SELECTABLE_GENDERS, title: "Age break down by genders"))
-                
-                var groupedValuesForMale = [[String]]()
-                for i in 0..<numbers[0].count {
-                    groupedValuesForMale.append([numbers[0][i].description, String(format: "%.2f",(Double(totalAgesInDays[0][i])/Double(numbers[0][i])/365)),String(format: "%.2f",(Double(totalDurationsInDays[0][i])/Double(numbers[0][i])/365)),String(format: "%.2f",HbA1cRanges[0][i].average),HbA1cRanges[0][i].median.description + "0","\(HbA1cRanges[0][i].min)0~\(HbA1cRanges[0][i].max)0"])
+                if self.selectedAttributeIndexes[0].count == 0 || self.selectedAttributeIndexes[0].count == Constants.SELECTABLE_GENDERS.count{
+                    views.append(BarChartWithFormatter(dataPoints: titleForAgeRanges, groupedValues: numbers, labels: Constants.SELECTABLE_GENDERS, title: "Age break down by genders"))
+                } else {
+                    views.append(PieChart(dataPoints: titleForAgeRanges, values: numbers[self.selectedAttributeIndexes[0].first!], title: "Age break down by genders(" + Constants.SELECTABLE_GENDERS[self.selectedAttributeIndexes[0].first!] + ")"))
                 }
                 
-                for i in 0..<titleForAgeRanges.count {
-                    titleForAgeRanges[i] = "MALE: " + titleForAgeRanges[i]
-                }
-                
-                
-                views.append(Tabular(dataPoint: ["Total number", "Mean Age (years)","Mean Duration (years)","Mean HbA1c","Median HbA1c","HbA1c Range"], groupedvalues: groupedValuesForMale, titles: titleForAgeRanges))
-                
-                var groupedValuesForFeMale = [[String]]()
-                for i in 0..<numbers[1].count {
-                    groupedValuesForFeMale.append([numbers[1][i].description, String(format: "%.2f",(Double(totalAgesInDays[1][i])/Double(numbers[1][i])/365)),String(format: "%.2f",(Double(totalDurationsInDays[1][i])/Double(numbers[1][i])/365)),String(format: "%.2f",HbA1cRanges[0][i].average),HbA1cRanges[1][i].median.description + "0","\(HbA1cRanges[1][i].min)0~\(HbA1cRanges[1][i].max)0"])
-                }
-                
-                for i in 0..<titleForAgeRanges.count {
-                    titleForAgeRanges[i] = "FE" + titleForAgeRanges[i]
-                }
-                
-                views.append(Tabular(dataPoint: ["Total number", "Mean Age (years)","Mean Duration (years)","Mean HbA1c","Median HbA1c","HbA1c Range"], groupedvalues: groupedValuesForFeMale, titles: titleForAgeRanges))
-                
-                
-                
-//                for i in 0..<numbers.count {
-//                    for j in 0..<numbers[i].count {
-//                        print(totalAgesInDays[i][j]/365.0/numbers[i][j])
-//                        print(totalDurationsInDays[i][j]/365.0/numbers[i][j])
-//                        print(HbA1cRanges[i][j].average)
-//                        print(HbA1cRanges[i][j].median)
-//                        print(HbA1cRanges[i][j].min)
-//                        print(HbA1cRanges[i][j].max)
-//                    }
-//                }
                 
                 if self.ranges[3].count > 0 {
                     var groupedvaluesForMale = [[Double]](repeating: [Double](repeating: 0.0, count: self.ranges[3].count), count: self.ranges[0].count)
@@ -131,11 +128,14 @@ extension ReportOptionController {
                         titleForHbA1cRanges.append(datapoint)
                     }
                     
+                    if self.selectedAttributeIndexes[0].index(of: 0) != nil  || selectedAttributeIndexes[0].count == 0 {
+                        views.append(BarChartWithFormatter(dataPoints: titleForHbA1cRanges, groupedValues: groupedvaluesForMale, labels: titleForBarChart,title:"HbA1c Range Distribution For Male"))
+                    }
                     
-                    views.append(BarChartWithFormatter(dataPoints: titleForHbA1cRanges, groupedValues: groupedvaluesForMale, labels: titleForBarChart,title:"HbA1c Range Distribution For Male"))
-                    
-                    views.append(BarChartWithFormatter(dataPoints: titleForHbA1cRanges, groupedValues: groupedvaluesForFemale, labels: titleForBarChart,title:"HbA1c Range Distribution For Female"))
-                    
+                    if self.selectedAttributeIndexes[0].index(of: 1) != nil || selectedAttributeIndexes[0].count == 0 {
+                        views.append(BarChartWithFormatter(dataPoints: titleForHbA1cRanges, groupedValues: groupedvaluesForFemale, labels: titleForBarChart,title:"HbA1c Range Distribution For Female"))
+                        
+                    }
                 }
                 
             }else {
@@ -175,8 +175,6 @@ extension ReportOptionController {
                     titleForAgeRanges.append(title)
                 }
                 
-                views.append(PieChart(dataPoints: titleForAgeRanges, values: numbers, title: "Age Distribution"))
-                
                 var groupedValues = [[String]]()
                 for i in 0..<numbers.count {
                     groupedValues.append([numbers[i].description, String(format: "%.2f",(Double(totalAgesInDays[i])/Double(numbers[i])/365)),String(format: "%.2f",(Double(totalDurationsInDays[i])/Double(numbers[i])/365)),String(format: "%.2f",HbA1cRanges[i].average),HbA1cRanges[i].median.description + "0","\(HbA1cRanges[i].min)0~\(HbA1cRanges[i].max)0"])
@@ -185,7 +183,7 @@ extension ReportOptionController {
                 
                 views.append(Tabular(dataPoint: ["Total number", "Mean Age (years)","Mean Duration (years)","Mean HbA1c","Median HbA1c","HbA1c Range"], groupedvalues: groupedValues, titles: titleForAgeRanges))
                 
-                
+                views.append(PieChart(dataPoints: titleForAgeRanges, values: numbers, title: "Age Distribution"))
                 
                 
                 if self.ranges[3].count > 0 {

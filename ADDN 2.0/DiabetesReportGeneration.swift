@@ -53,16 +53,15 @@ extension ReportOptionController{
                 titleForDiabeteDurationRanges.append(title)
             }
             
-            views.append(PieChart(dataPoints: titleForDiabeteDurationRanges, values: numbers, title: "Diabete Duration Distribution"))
-            
             //show table
             var groupedValues = [[String]]()
             for i in 0..<numbers.count {
                 groupedValues.append([numbers[i].description, String(format: "%.2f",(Double(totalAgesInDays[i])/Double(numbers[i])/365)),String(format: "%.2f",(Double(totalDurationsInDays[i])/Double(numbers[i])/365)),String(format: "%.2f",HbA1cRanges[i].average),HbA1cRanges[i].median.description + "0","\(HbA1cRanges[i].min)0~\(HbA1cRanges[i].max)0"])
             }
             
-            
             views.append(Tabular(dataPoint: ["Total number", "Mean Age (years)","Mean Duration (years)","Mean HbA1c","Median HbA1c","HbA1c Range"], groupedvalues: groupedValues, titles: titleForDiabeteDurationRanges))
+            
+            views.append(PieChart(dataPoints: titleForDiabeteDurationRanges, values: numbers, title: "Diabete Duration Distribution"))
             
             if self.ranges[3].count > 0 {
                 var groupedvalues = [[Double]](repeating: [Double](repeating: 0.0, count: self.ranges[3].count), count: self.ranges[1].count)

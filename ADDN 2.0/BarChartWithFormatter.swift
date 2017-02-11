@@ -17,7 +17,7 @@ class BarChartWithFormatter: BarChartView,IAxisValueFormatter {
         self.groupedValues = groupedValues
         self.labels = labels
         
-        chartDescription?.text = title
+        titleLabel.text = title
         
         setupView()
     }
@@ -52,8 +52,6 @@ class BarChartWithFormatter: BarChartView,IAxisValueFormatter {
             data.addDataSet(chartDataSet)
         }
         
-        
-        
         data.setValueTextColor(UIColor.white)
         
         data.barWidth = 0.4
@@ -63,9 +61,7 @@ class BarChartWithFormatter: BarChartView,IAxisValueFormatter {
         }
         
         
-//        print(data.barWidth)
-//        print(data.groupWidth(groupSpace: 0.08, barSpace: 0))
-        
+ 
         
         
         self.data = data
@@ -74,9 +70,7 @@ class BarChartWithFormatter: BarChartView,IAxisValueFormatter {
         
         drawGridBackgroundEnabled = true
         gridBackgroundColor = UIColor.darkGray
-        
-        chartDescription?.font = UIFont.systemFont(ofSize: 18)
-        chartDescription?.textColor = UIColor.white
+        chartDescription?.text = ""
         
 //        let limitLine = ChartLimitLine(limit: 30.0, label: "Target")
 //        limitLine.valueTextColor = UIColor.white
@@ -87,12 +81,32 @@ class BarChartWithFormatter: BarChartView,IAxisValueFormatter {
         
         xAxis.valueFormatter = self
         xAxis.setLabelCount(dataPoints.count, force: false)
-//        xAxis.avoidFirstLastClippingEnabled = true
+        xAxis.labelPosition = .bottom
+        
+        legend.horizontalAlignment = .right
+        legend.verticalAlignment = .bottom
         
         animate(xAxisDuration: 1.0, yAxisDuration: 1.0)
+        
+        addSubview(titleLabel)
+        //
+        titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 6).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: -24).isActive = true
+        titleLabel.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -12).isActive = true
+        titleLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
     
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         return dataPoints[Int(value)]
     }
+    
+    let titleLabel : UILabel = {
+        let label = UILabel()
+        label.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1)
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
 }

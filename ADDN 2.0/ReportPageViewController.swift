@@ -1,5 +1,5 @@
 //
-//  PageView.swift
+//  ReportPageViewController.swift
 //  ADDN 2.0
 //
 //  Created by Jay on 11/02/2017.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PageView: UIPageViewController,UIPageViewControllerDataSource {
+class ReportPageViewController: UIPageViewController,UIPageViewControllerDataSource {
     
     var navTitle: String? {
         didSet {

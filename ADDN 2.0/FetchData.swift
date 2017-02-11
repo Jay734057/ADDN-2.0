@@ -96,7 +96,7 @@ extension ReportOptionController: ChartViewDelegate {
             }
         }
         
-        let reportPage = PageView()
+        let reportPage = ReportPageViewController()
         
         reportPage.reports = reports
         

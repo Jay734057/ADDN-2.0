@@ -48,7 +48,7 @@
 		69DDA9401E4DAC1100814F8B /* DiabetesReportGeneration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DDA93F1E4DAC1100814F8B /* DiabetesReportGeneration.swift */; };
 		69DDA9421E4DB23400814F8B /* Tabular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DDA9411E4DB23400814F8B /* Tabular.swift */; };
 		69DDA9441E4DE62200814F8B /* ReportTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DDA9431E4DE62200814F8B /* ReportTitleView.swift */; };
-		69DDA9461E4DFC5B00814F8B /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DDA9451E4DFC5B00814F8B /* PageView.swift */; };
+		69DDA9461E4DFC5B00814F8B /* ReportPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DDA9451E4DFC5B00814F8B /* ReportPageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,7 +139,7 @@
 		69DDA93F1E4DAC1100814F8B /* DiabetesReportGeneration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiabetesReportGeneration.swift; sourceTree = "<group>"; };
 		69DDA9411E4DB23400814F8B /* Tabular.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tabular.swift; sourceTree = "<group>"; };
 		69DDA9431E4DE62200814F8B /* ReportTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportTitleView.swift; sourceTree = "<group>"; };
-		69DDA9451E4DFC5B00814F8B /* PageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
+		69DDA9451E4DFC5B00814F8B /* ReportPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportPageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,7 +254,7 @@
 				69DDA93D1E4DABF400814F8B /* InsulinRegimenReportGeneration.swift */,
 				69DDA93F1E4DAC1100814F8B /* DiabetesReportGeneration.swift */,
 				699170E21E39CE0F00175B0A /* ReportController.swift */,
-				69DDA9451E4DFC5B00814F8B /* PageView.swift */,
+				69DDA9451E4DFC5B00814F8B /* ReportPageViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -380,7 +380,7 @@
 				699170DA1E39C69F00175B0A /* FetchData.swift in Sources */,
 				69DDA93A1E4DA94D00814F8B /* GenderReportGeneration.swift in Sources */,
 				69C67CFF1E35DD1F00CDEB89 /* RangeMenuController.swift in Sources */,
-				69DDA9461E4DFC5B00814F8B /* PageView.swift in Sources */,
+				69DDA9461E4DFC5B00814F8B /* ReportPageViewController.swift in Sources */,
 				69C8E1671E46AE5A00B9BEAF /* DashboardController.swift in Sources */,
 				69D597711E342F95006029BD /* APIservice.swift in Sources */,
 				69D597751E34305D006029BD /* ReportOptionController.swift in Sources */,

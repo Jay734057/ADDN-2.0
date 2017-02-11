@@ -45,14 +45,16 @@ class SwitchCell: BaseCell {
         
         titleLabel.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
         
+        accessoryView = switchButton
+        
         addSubview(detailLabel)
         //xywh
-        detailLabel.leftAnchor.constraint(equalTo: titleLabel.rightAnchor, constant: 8).isActive = true
+        detailLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -80).isActive = true
         detailLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         detailLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
         detailLabel.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
         
-        accessoryView = switchButton
+        
 
     }
     
