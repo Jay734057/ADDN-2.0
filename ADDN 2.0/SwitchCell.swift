@@ -35,10 +35,10 @@ class SwitchCell: BaseCell {
     override func setupView() {
         addSubview(titleLabel)
         //xywh
-        titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 18).isActive = true
+        titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16).isActive = true
         titleLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         
-        titleLabelWidthAnchorConstraint = titleLabel.widthAnchor.constraint(equalToConstant: 100)
+        titleLabelWidthAnchorConstraint = titleLabel.widthAnchor.constraint(equalToConstant: 150)
         titleLabelWidthAnchorConstraint?.isActive = true
         
         titleLabelRightAnChorConstraint = titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -18)
