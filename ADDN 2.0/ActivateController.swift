@@ -59,7 +59,7 @@ class ActivateController: UIViewController,UITextFieldDelegate
     }()
 
     func handleGetActiveCode() {
-        let alertView = UIAlertController(title: "Active Code", message: "Jay", preferredStyle: .alert)
+        let alertView = UIAlertController(title: "New Activation Code", message: "Please ask the ADDN project group for an activation code", preferredStyle: .alert)
         
         let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertView.addAction(alertAction)
