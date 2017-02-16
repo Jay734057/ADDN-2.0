@@ -30,6 +30,15 @@ class BarChartWithFormatter: BarChartView,IAxisValueFormatter {
     var groupedValues:[[Double]]!
     var labels: [String]!
     
+    let titleLabel : UILabel = {
+        let label = UILabel()
+        label.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1)
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     let colors = [UIColor.red,UIColor.green,UIColor.blue,UIColor.orange,UIColor.cyan,UIColor.purple,UIColor.brown,UIColor.white,UIColor.magenta,UIColor.lightGray]
     
     func setupView(){
@@ -60,10 +69,6 @@ class BarChartWithFormatter: BarChartView,IAxisValueFormatter {
             data.groupBars(fromX: -0.5, groupSpace: 0.2, barSpace: 0)
         }
         
-        
- 
-        
-        
         self.data = data
         
         
@@ -71,10 +76,6 @@ class BarChartWithFormatter: BarChartView,IAxisValueFormatter {
         drawGridBackgroundEnabled = true
         gridBackgroundColor = UIColor.darkGray
         chartDescription?.text = ""
-        
-//        let limitLine = ChartLimitLine(limit: 30.0, label: "Target")
-//        limitLine.valueTextColor = UIColor.white
-//        rightAxis.addLimitLine(limitLine)
         
         leftAxis.axisMinimum = 0
         rightAxis.axisMinimum = 0
@@ -99,14 +100,5 @@ class BarChartWithFormatter: BarChartView,IAxisValueFormatter {
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         return dataPoints[Int(value)]
     }
-    
-    let titleLabel : UILabel = {
-        let label = UILabel()
-        label.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1)
-        label.font = UIFont.systemFont(ofSize: 20)
-        label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
 
 }

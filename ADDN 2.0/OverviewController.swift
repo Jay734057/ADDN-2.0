@@ -11,7 +11,6 @@ import UIKit
 class OverviewController: UITableViewController {
     
     var localIds : [Int]?
-    
     var patientDic : [Int:Patient]?
     var lastUpdatedDate : String?
     

@@ -53,8 +53,6 @@ class SwitchCell: BaseCell {
         detailLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         detailLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
         detailLabel.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
-        
-        
 
     }
     

@@ -70,7 +70,6 @@ class ActivateController: UIViewController,UITextFieldDelegate
     }
     
     func handleActivate(){
-        
         view.endEditing(true)
         
         //should handle the authentication of activate code

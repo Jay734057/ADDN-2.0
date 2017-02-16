@@ -31,7 +31,6 @@ class DashboardController: UITableViewController {
         
     }
     
-    
     var centersWithIdOfPatientsAndUpdatedDate : [String:([Int],String)]?
     
     func fetchData() {

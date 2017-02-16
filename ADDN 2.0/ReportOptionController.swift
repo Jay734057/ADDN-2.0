@@ -133,7 +133,6 @@ class ReportOptionController: UITableViewController {
                 cell.titleLabel.textColor = UIColor.lightGray
                 cell.switchButton.addTarget(self, action: #selector(handleSwitchForInsulinRegimenBreakDown), for: .valueChanged)
             }
-            
             return cell
         }
         

@@ -13,7 +13,6 @@ class SafeJsonObject: NSObject {
         let uppercasedFirstCharacter = String(key.characters.first!).uppercased()
         let range = NSMakeRange(0, 1)
         let selectorString = NSString(string: key).replacingCharacters(in: range, with: uppercasedFirstCharacter)
-        //construct setNumber_of_likes selecotor
         let selector = NSSelectorFromString("set\(selectorString):")
         let responds = self.responds(to: selector)
         

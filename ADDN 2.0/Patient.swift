@@ -17,7 +17,6 @@ class Patient: SafeJsonObject {
     var gender: String?
     var local_id_id: NSNumber?
     
-    
     init(dictionary: [String: AnyObject]) {
         super.init()
         setValuesForKeys(dictionary)

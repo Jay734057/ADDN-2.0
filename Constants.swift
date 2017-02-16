@@ -61,7 +61,6 @@ struct Constants {
     static let PRESET_RANGES = [PRESET_AGE_RANGES,PRESET_DIATETES_DURATION_RANGES,[],[]]
     
     static let URL_PREFIX = "http://130.56.252.66:3000/"
-//    static let URL_PREFIX = "http://localhost:3000/"
     
     static let VALID_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRkbiJ9.mtr1v7tzgL0krxxV2dk2kqZdiXUpmjrKR5jto8OqZXE"
 }

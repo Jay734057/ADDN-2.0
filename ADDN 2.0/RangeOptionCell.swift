@@ -104,11 +104,7 @@ class RangeOptionCell: BaseCell, UITextFieldDelegate {
         }
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//        let allowedCharacters = CharacterSet.decimalDigits
-//        let characterSet = CharacterSet(charactersIn: string)
-//        return allowedCharacters.isSuperset(of: characterSet)
-        
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool { 
         switch string {
         case "0","1","2","3","4","5","6","7","8","9":
             return true
@@ -133,9 +129,7 @@ class RangeOptionCell: BaseCell, UITextFieldDelegate {
             return false
         }
         
-       
     }
 
-    
 }
 

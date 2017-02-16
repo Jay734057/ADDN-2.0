@@ -121,8 +121,6 @@ extension ReportOptionController {
                 views.append(PieChart(dataPoints: titleForHbA1cRanges, values: values, title: "HbA1c Range Distribution"))
             }
         }
-
-        
         return views
     }
     

@@ -9,7 +9,7 @@
 import UIKit
 import Charts
 
-extension ReportOptionController: ChartViewDelegate {
+extension ReportOptionController {
     
     func generateURLForPatientTable(local_id_id: [Int]) -> String {
         var urlForPatientTable = Constants.URL_PREFIX + "patient?order=local_id_id&select=gender,age_at_export_in_days,diabetes_duration_in_days,diabetes_type_other,diabetes_type_value,local_id_id&active=eq.true"
@@ -21,10 +21,6 @@ extension ReportOptionController: ChartViewDelegate {
             }
             urlForPatientTable = urlForPatientTable.substring(to: urlForPatientTable.index(before: urlForPatientTable.endIndex))
         }
-        
-//        if selectedAttributeIndexes[0].count == 1{
-//            urlForPatientTable = urlForPatientTable + "&gender=eq." + Constants.SELECTABLE_GENDERS[selectedAttributeIndexes[0][0]].uppercased()
-//        }
         
         if Constants.SELECTABLE_DIABETES_TYPES.endIndex != selectedAttributeIndexes[1][0]{
             urlForPatientTable = urlForPatientTable + "&diabetes_type_value=eq." + Constants.SELECTABLE_DIABETES_TYPES[selectedAttributeIndexes[1][0]].uppercased().replacingOccurrences(of: " ", with: "_")
@@ -68,24 +64,19 @@ extension ReportOptionController: ChartViewDelegate {
                 
                 fetchedData.visits = fetchedData.visits.filter({ fetchedData.local_id_ids.index(of: Int($0.local_id_id!)) != nil })
                 
-                self.showChart(fetchedData: fetchedData)
+                self.showReport(fetchedData: fetchedData)
             })
-            
-            
+
         }
         
         return fetchedData
     }
     
-    func showChart(fetchedData: FetchedDataForReport) {
+    func showReport(fetchedData: FetchedDataForReport) {
         let reportTitles = ["Gender Report", "Age Report", "Insulin Regimen Report", "Diabetes Report"]
         var reports = [ReportController]()
         let chartsForReports = [generateReportForGender(fetchedData: fetchedData),generateReportForAge(fetchedData: fetchedData), generateReportForInsulinRegimen(fetchedData: fetchedData), generateReportForDiabetes(fetchedData: fetchedData)]
         
-//        views += generateReportForGender(fetchedData: fetchedData)
-//        views += generateReportForAge(fetchedData: fetchedData)
-//        views += generateReportForInsulinRegimen(fetchedData: fetchedData)
-//        views += generateReportForDiabetes(fetchedData: fetchedData)
         for i in 0..<reportTitles.count {
             if chartsForReports[i].count > 0 {
                 let report = ReportController()

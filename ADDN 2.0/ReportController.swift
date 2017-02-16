@@ -86,7 +86,6 @@ class ReportController: UIViewController {
                     charts[i].topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true
                 }
                 
-                
                 var multiplierForWidth:CGFloat = 0.0
                 var multiplierForHeight:CGFloat = 0.0
                 if type(of: charts[i]).description() == "ADDN_2_0.Tabular" {

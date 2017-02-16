@@ -76,16 +76,6 @@ extension ReportOptionController{
             }
                 
             views.append(BarChartWithFormatter(dataPoints: dataPointsForCharts, groupedValues: groupedValuesForBarChart, labels: titleForAgeRanges, title: "Insulin Regimen break down"))
-            
-            
-//            var groupedValuesForTabular = [[String]]()
-//            for i in selectedIndex {
-//                groupedValuesForTabular.append([numbers[i].description, String(format: "%.2f",(Double(totalAgesInDays[i])/Double(numbers[i])/365)),String(format: "%.2f",(Double(totalDurationsInDays[i])/Double(numbers[i])/365)),String(format: "%.2f",HbA1cRanges[i].average),HbA1cRanges[i].median.description + "0","\(HbA1cRanges[i].min)0~\(HbA1cRanges[i].max)0"])
-//            }
-            
-//            views.append(Tabular(dataPoint: ["Total number", "Mean Age (years)","Mean Duration (years)","Mean HbA1c","Median HbA1c","HbA1c Range"], groupedvalues: groupedValuesForTabular, titles: dataPointsForCharts))
-            
-            
                 
             if self.ranges[3].count > 0 {
                 var groupedvalues = [[Double]](repeating: [Double](repeating: 0.0, count: self.ranges[3].count), count: Constants.SELECTABLE_INSULIN_REGIMEN.count)
@@ -149,9 +139,6 @@ extension ReportOptionController{
                 }
             }
             
-            
-            
-            
             var dataPointsForCharts = [String]()
             var valuesForPieChart = [Double]()
             for selected in selectedIndex {
@@ -167,10 +154,6 @@ extension ReportOptionController{
             views.append(Tabular(dataPoint: ["Total number", "Mean Age (years)","Mean Duration (years)","Mean HbA1c","Median HbA1c","HbA1c Range"], groupedvalues: groupedValues, titles: dataPointsForCharts))
                 
             views.append(PieChart(dataPoints: dataPointsForCharts, values: valuesForPieChart, title: "Insulin Regimen Distribution"))
-            
-            
-            
-            
             
             if self.ranges[3].count > 0 {
                 var groupedvalues = [[Double]](repeating: [Double](repeating: 0.0, count: self.ranges[3].count), count: Constants.SELECTABLE_INSULIN_REGIMEN.count)

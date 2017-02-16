@@ -13,8 +13,6 @@ class LocalID: SafeJsonObject {
     var centre: String?
     var date_of_export: String?
     
-    
-    
     init(dictionary: [String: AnyObject]) {
         super.init()
         setValuesForKeys(dictionary)
