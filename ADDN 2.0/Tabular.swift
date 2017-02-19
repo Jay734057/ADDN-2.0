@@ -2,6 +2,8 @@
 //  TableView.swift
 //  ADDN 2.0
 //
+//  View for the table
+//
 //  Created by Jay on 10/02/2017.
 //  Copyright © 2017 Jay. All rights reserved.
 //

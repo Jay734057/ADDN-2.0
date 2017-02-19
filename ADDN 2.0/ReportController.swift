@@ -2,6 +2,8 @@
 //  ReportController.swift
 //  ADDN 2.0
 //
+//  Controller for showing a specific report
+//
 //  Created by Jay on 26/01/2017.
 //  Copyright © 2017 Jay. All rights reserved.
 //

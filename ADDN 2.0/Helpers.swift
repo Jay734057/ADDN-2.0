@@ -2,6 +2,8 @@
 //  Helpers.swift
 //  ADDN 2.0
 //
+//  Helper methods for generate colors and process array data
+//
 //  Created by Jay on 22/01/2017.
 //  Copyright © 2017 Jay. All rights reserved.
 //

@@ -2,6 +2,8 @@
 //  LocalID.swift
 //  ADDN 2.0
 //
+//  Representing the JSON Object for a local id
+//
 //  Created by Jay on 05/02/2017.
 //  Copyright © 2017 Jay. All rights reserved.
 //

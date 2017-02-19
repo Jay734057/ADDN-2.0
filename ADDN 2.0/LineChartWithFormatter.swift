@@ -2,6 +2,8 @@
 //  LineChartWithFormatter.swift
 //  ADDN 2.0
 //
+//  View for the line chart
+//
 //  Created by Jay on 29/01/2017.
 //  Copyright © 2017 Jay. All rights reserved.
 //

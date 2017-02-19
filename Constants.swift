@@ -2,6 +2,8 @@
 //  Constants.swift
 //  ADDN 2.0
 //
+//  All constants that are used in the project
+//
 //  Created by Jay on 26/01/2017.
 //  Copyright © 2017 Jay. All rights reserved.
 //

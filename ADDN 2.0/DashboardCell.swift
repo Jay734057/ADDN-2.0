@@ -2,6 +2,8 @@
 //  DashboardCell.swift
 //  ADDN 2.0
 //
+//  Cell for Dashboard
+//
 //  Created by Jay on 05/02/2017.
 //  Copyright © 2017 Jay. All rights reserved.
 //

@@ -2,6 +2,8 @@
 //  SelectMenuController.swift
 //  ADDN 2.0
 //
+//  Base class for select menu controller
+//
 //  Created by Jay on 26/01/2017.
 //  Copyright © 2017 Jay. All rights reserved.
 //

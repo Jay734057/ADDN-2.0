@@ -2,6 +2,8 @@
 //  OverviewController.swift
 //  ADDN 2.0
 //
+//  Presenting the overview report for a selected hospital
+//
 //  Created by Jay on 05/02/2017.
 //  Copyright © 2017 Jay. All rights reserved.
 //

@@ -37,7 +37,7 @@
 		69D597731E342FD5006029BD /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D597721E342FD5006029BD /* BaseCell.swift */; };
 		69D597751E34305D006029BD /* ReportOptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D597741E34305D006029BD /* ReportOptionController.swift */; };
 		69D597771E34309D006029BD /* RangeOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D597761E34309D006029BD /* RangeOptionCell.swift */; };
-		69D597791E3430D1006029BD /* FetchedDataForReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D597781E3430D1006029BD /* FetchedDataForReport.swift */; };
+		69D597791E3430D1006029BD /* FetchedDataForDetailedReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D597781E3430D1006029BD /* FetchedDataForDetailedReport.swift */; };
 		69DDA9301E4C07DE00814F8B /* jwt_token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DDA92F1E4C07DE00814F8B /* jwt_token.swift */; };
 		69DDA9361E4D952200814F8B /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DDA9351E4D952200814F8B /* MenuCell.swift */; };
 		69DDA93A1E4DA94D00814F8B /* GenderReportGeneration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DDA9391E4DA94D00814F8B /* GenderReportGeneration.swift */; };
@@ -129,7 +129,7 @@
 		69D597721E342FD5006029BD /* BaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		69D597741E34305D006029BD /* ReportOptionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportOptionController.swift; sourceTree = "<group>"; };
 		69D597761E34309D006029BD /* RangeOptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeOptionCell.swift; sourceTree = "<group>"; };
-		69D597781E3430D1006029BD /* FetchedDataForReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedDataForReport.swift; sourceTree = "<group>"; };
+		69D597781E3430D1006029BD /* FetchedDataForDetailedReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedDataForDetailedReport.swift; sourceTree = "<group>"; };
 		69DDA92F1E4C07DE00814F8B /* jwt_token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = jwt_token.swift; sourceTree = "<group>"; };
 		69DDA9351E4D952200814F8B /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		69DDA9391E4DA94D00814F8B /* GenderReportGeneration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenderReportGeneration.swift; sourceTree = "<group>"; };
@@ -214,7 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				69D5976C1E342EBD006029BD /* SafeJsonObject.swift */,
-				69D597781E3430D1006029BD /* FetchedDataForReport.swift */,
+				69D597781E3430D1006029BD /* FetchedDataForDetailedReport.swift */,
 				69C8E1681E46B02000B9BEAF /* FetchedDataForDashboard.swift */,
 				699170CC1E37507400175B0A /* Patient.swift */,
 				699170D01E3753BB00175B0A /* Visit.swift */,
@@ -391,7 +391,7 @@
 				69C8E1691E46B02000B9BEAF /* FetchedDataForDashboard.swift in Sources */,
 				69C67CF21E343CFB00CDEB89 /* ActivateController.swift in Sources */,
 				69DDA9441E4DE62200814F8B /* ReportTitleView.swift in Sources */,
-				69D597791E3430D1006029BD /* FetchedDataForReport.swift in Sources */,
+				69D597791E3430D1006029BD /* FetchedDataForDetailedReport.swift in Sources */,
 				69DDA9401E4DAC1100814F8B /* DiabetesReportGeneration.swift in Sources */,
 				69DDA9301E4C07DE00814F8B /* jwt_token.swift in Sources */,
 				69C67CFB1E358DE600CDEB89 /* MultiSelectMenuController.swift in Sources */,

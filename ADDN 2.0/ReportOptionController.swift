@@ -2,6 +2,8 @@
 //  HomeController.swift
 //  ADDN 2.0
 //
+//  Presenting all settable options for the report
+//
 //  Created by Jay on 22/01/2017.
 //  Copyright © 2017 Jay. All rights reserved.
 //

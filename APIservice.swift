@@ -2,6 +2,8 @@
 //  APIservice.swift
 //  ADDN 2.0
 //
+//  Provide methods for retrieving data from the ADDN database and validata the activate code
+//
 //  Created by Jay on 22/01/2017.
 //  Copyright © 2017 Jay. All rights reserved.
 //

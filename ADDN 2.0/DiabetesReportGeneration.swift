@@ -2,6 +2,8 @@
 //  DiabetesReportGeneration.swift
 //  ADDN 2.0
 //
+//  Extension for generating the diabetes report
+//
 //  Created by Jay on 10/02/2017.
 //  Copyright © 2017 Jay. All rights reserved.
 //
@@ -9,7 +11,7 @@
 import UIKit
 
 extension ReportOptionController{
-    func generateReportForDiabetes(fetchedData: FetchedDataForReport) -> [UIView] {
+    func generateReportForDiabetes(fetchedData: FetchedDataForDetailedReport) -> [UIView] {
         var views = [UIView]()
         
         //all retrieved data

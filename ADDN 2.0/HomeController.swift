@@ -2,6 +2,8 @@
 //  HomeController.swift
 //  ADDN 2.0
 //
+//  Home controller for the application
+//
 //  Created by Jay on 04/02/2017.
 //  Copyright © 2017 Jay. All rights reserved.
 //

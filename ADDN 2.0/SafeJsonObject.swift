@@ -2,6 +2,8 @@
 //  SafeJsonObject.swift
 //  ADDN 2.0
 //
+//  Base class for JSON Object from the ADDN database
+//
 //  Created by Jay on 22/01/2017.
 //  Copyright © 2017 Jay. All rights reserved.
 //

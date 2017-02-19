@@ -2,6 +2,8 @@
 //  FetchDataForReports.swift
 //  ADDN 2.0
 //
+//  Extension for fetching data from the ADDN database
+//
 //  Created by Jay on 26/01/2017.
 //  Copyright © 2017 Jay. All rights reserved.
 //
@@ -44,8 +46,8 @@ extension ReportOptionController {
     }
     
     
-    func fetchDataForDetailedReport() -> FetchedDataForReport {
-        let fetchedData = FetchedDataForReport()
+    func fetchDataForDetailedReport() -> FetchedDataForDetailedReport {
+        let fetchedData = FetchedDataForDetailedReport()
         
         //retrieve data from visit table
         APIservice.sharedInstance.fetchFromURLForVisit(url: generateURLForVisitTable()) { (visits: [Visit]) in
@@ -76,7 +78,7 @@ extension ReportOptionController {
         return fetchedData
     }
     
-    func showDetailedReport(fetchedData: FetchedDataForReport) {
+    func showDetailedReport(fetchedData: FetchedDataForDetailedReport) {
         //generate detailed reports
         let reportTitles = ["Gender Report", "Age Report", "Insulin Regimen Report", "Diabetes Report"]
         var reports = [ReportController]()

@@ -2,6 +2,8 @@
 //  Patient.swift
 //  ADDN 2.0
 //
+//  Representing the JSON Object for a patient
+//
 //  Created by Jay on 24/01/2017.
 //  Copyright © 2017 Jay. All rights reserved.
 //

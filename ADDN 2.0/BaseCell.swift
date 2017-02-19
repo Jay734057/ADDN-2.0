@@ -2,6 +2,8 @@
 //  BaseCell.swift
 //  ADDN 2.0
 //
+//  Base class for all table cell
+//
 //  Created by Jay on 22/01/2017.
 //  Copyright © 2017 Jay. All rights reserved.
 //
