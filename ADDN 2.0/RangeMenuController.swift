@@ -1,5 +1,5 @@
 //
-//  RangeOptionsController.swift
+//  RangeMenuController.swift
 //  ADDN 2.0
 //
 //  Created by Jay on 23/01/2017.
@@ -35,9 +35,9 @@ class RangeMenuController: UITableViewController {
         
         tableView.keyboardDismissMode = .onDrag
         
-        
     }
     
+    //add the 'Back', 'Add', and 'Remove all' button to the navigation bar
     func setupBarButton() {
         let backBarButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: nil)
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backBarButton
@@ -45,12 +45,12 @@ class RangeMenuController: UITableViewController {
         let addBarButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(handleAdd))
         let removeAllBarButton = UIBarButtonItem(title: "Remove All", style: .plain, target: self, action: #selector(handleRemoveAll))
         navigationItem.rightBarButtonItems = [addBarButton, removeAllBarButton]
-//        navigationItem.rightBarButtonItem = addBarButton
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tableView.endEditing(true)
+        //change the set ranges array
         let cells = tableView.visibleCells as! [RangeOptionCell]
         for index in 0..<cells.count {
             ranges[index] = (cells[index].min == nil ? Double.leastNormalMagnitude : cells[index].min! , cells[index].max == nil ? Double.greatestFiniteMagnitude : cells[index].max!)
@@ -84,13 +84,13 @@ class RangeMenuController: UITableViewController {
         
     }
     
+    //setup table cells
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         numberOfRanges -= 1
         ranges.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .bottom)
     }
 
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

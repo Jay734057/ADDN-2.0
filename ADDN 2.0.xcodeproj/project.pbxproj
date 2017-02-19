@@ -14,8 +14,8 @@
 		699170D11E3753BB00175B0A /* Visit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699170D01E3753BB00175B0A /* Visit.swift */; };
 		699170D31E3835E300175B0A /* SingleSelectMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699170D21E3835E300175B0A /* SingleSelectMenuController.swift */; };
 		699170D61E39B82F00175B0A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699170D51E39B82F00175B0A /* Constants.swift */; };
-		699170D81E39C62E00175B0A /* ShowMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699170D71E39C62E00175B0A /* ShowMenu.swift */; };
-		699170DA1E39C69F00175B0A /* FetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699170D91E39C69F00175B0A /* FetchData.swift */; };
+		699170D81E39C62E00175B0A /* ShowOptionsForReports.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699170D71E39C62E00175B0A /* ShowOptionsForReports.swift */; };
+		699170DA1E39C69F00175B0A /* FetchDataForReports.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699170D91E39C69F00175B0A /* FetchDataForReports.swift */; };
 		699170DF1E39C93400175B0A /* SelectMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699170DE1E39C93400175B0A /* SelectMenuController.swift */; };
 		699170E31E39CE0F00175B0A /* ReportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699170E21E39CE0F00175B0A /* ReportController.swift */; };
 		69C67CF01E34397C00CDEB89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69C67CEE1E34397C00CDEB89 /* LaunchScreen.storyboard */; };
@@ -104,8 +104,8 @@
 		699170D01E3753BB00175B0A /* Visit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Visit.swift; sourceTree = "<group>"; };
 		699170D21E3835E300175B0A /* SingleSelectMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleSelectMenuController.swift; sourceTree = "<group>"; };
 		699170D51E39B82F00175B0A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../Constants.swift; sourceTree = "<group>"; };
-		699170D71E39C62E00175B0A /* ShowMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowMenu.swift; sourceTree = "<group>"; };
-		699170D91E39C69F00175B0A /* FetchData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchData.swift; sourceTree = "<group>"; };
+		699170D71E39C62E00175B0A /* ShowOptionsForReports.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowOptionsForReports.swift; sourceTree = "<group>"; };
+		699170D91E39C69F00175B0A /* FetchDataForReports.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchDataForReports.swift; sourceTree = "<group>"; };
 		699170DE1E39C93400175B0A /* SelectMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMenuController.swift; sourceTree = "<group>"; };
 		699170E21E39CE0F00175B0A /* ReportController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportController.swift; sourceTree = "<group>"; };
 		69C67CEF1E34397C00CDEB89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -247,8 +247,8 @@
 				69C8E1661E46AE5A00B9BEAF /* DashboardController.swift */,
 				69C8E16C1E47190B00B9BEAF /* OverviewController.swift */,
 				69D597741E34305D006029BD /* ReportOptionController.swift */,
-				699170D71E39C62E00175B0A /* ShowMenu.swift */,
-				699170D91E39C69F00175B0A /* FetchData.swift */,
+				699170D71E39C62E00175B0A /* ShowOptionsForReports.swift */,
+				699170D91E39C69F00175B0A /* FetchDataForReports.swift */,
 				69DDA9391E4DA94D00814F8B /* GenderReportGeneration.swift */,
 				69DDA93B1E4DAB5200814F8B /* AgeReportGeneration.swift */,
 				69DDA93D1E4DABF400814F8B /* InsulinRegimenReportGeneration.swift */,
@@ -377,7 +377,7 @@
 				699170CD1E37507400175B0A /* Patient.swift in Sources */,
 				69DDA9361E4D952200814F8B /* MenuCell.swift in Sources */,
 				699170D31E3835E300175B0A /* SingleSelectMenuController.swift in Sources */,
-				699170DA1E39C69F00175B0A /* FetchData.swift in Sources */,
+				699170DA1E39C69F00175B0A /* FetchDataForReports.swift in Sources */,
 				69DDA93A1E4DA94D00814F8B /* GenderReportGeneration.swift in Sources */,
 				69C67CFF1E35DD1F00CDEB89 /* RangeMenuController.swift in Sources */,
 				69DDA9461E4DFC5B00814F8B /* ReportPageViewController.swift in Sources */,
@@ -405,7 +405,7 @@
 				699170E31E39CE0F00175B0A /* ReportController.swift in Sources */,
 				69D597731E342FD5006029BD /* BaseCell.swift in Sources */,
 				69047B581E3DC7750017CC20 /* BarChartWithFormatter.swift in Sources */,
-				699170D81E39C62E00175B0A /* ShowMenu.swift in Sources */,
+				699170D81E39C62E00175B0A /* ShowOptionsForReports.swift in Sources */,
 				69DDA93C1E4DAB5200814F8B /* AgeReportGeneration.swift in Sources */,
 				69C8E1611E45716500B9BEAF /* HomeController.swift in Sources */,
 				69C67D011E35E66A00CDEB89 /* SwitchCell.swift in Sources */,

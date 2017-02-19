@@ -1,5 +1,5 @@
 //
-//  ReportOptionExtensionForAgeReportGeneration.swift
+//  AgeReportGeneration.swift
 //  ADDN 2.0
 //
 //  Created by Jay on 10/02/2017.
@@ -12,19 +12,20 @@ extension ReportOptionController {
     func generateReportForAge(fetchedData: FetchedDataForReport) -> [UIView] {
         var views = [UIView]()
         
+        //all retrieved data
         let local_id_id = fetchedData.local_id_ids
         let patients = fetchedData.patients
         let visits = fetchedData.visits
-        //Age
+
+        //check the number of set age range
         if self.ranges[0].count > 0 {
             //age ranges exist
             if FlagForAgeBreakDown {
-                //age breakdown by gender
+                //variables for storing analysis results
                 var numbers = [[Double]](repeating: [Double](repeating: 0.0, count: self.ranges[0].count), count: Constants.SELECTABLE_GENDERS.count)
                 var totalAgesInDays = [[Double]](repeating: [Double](repeating: 0.0, count: self.ranges[0].count), count: Constants.SELECTABLE_GENDERS.count)
                 var totalDurationsInDays = [[Double]](repeating: [Double](repeating: 0.0, count: self.ranges[0].count), count: Constants.SELECTABLE_GENDERS.count)
                 var HbA1cRanges = [[[Double]]](repeating: [[Double]](repeating: [], count: self.ranges[0].count), count: Constants.SELECTABLE_GENDERS.count)
-                
                 var ageRanges = [(Double,Double)]()
                 
                 //initial ageRanges
@@ -34,6 +35,7 @@ extension ReportOptionController {
                     ageRanges.append((min,max))
                 }
                 
+                //analyze the data
                 for i in 0..<local_id_id.count {
                     for index in 0..<ageRanges.count {
                         if let ageInDays = patients[i].age_at_export_in_days {
@@ -51,15 +53,16 @@ extension ReportOptionController {
                     }
                 }
                 
+                //setup the input for the table or chart
                 var titleForAgeRanges = [String]()
-                
-                
                 
                 for range in self.ranges[0] {
                     let title: String = (range.0 == Double.leastNormalMagnitude ? "" : range.0.description) + "~" + (range.1 == Double.greatestFiniteMagnitude ? "" : range.1.description)
                     titleForAgeRanges.append(title)
                 }
                 
+                
+                //add table for male to the report
                 if self.selectedAttributeIndexes[0].index(of: 0) != nil || selectedAttributeIndexes[0].count == 0 {
                     var groupedValuesForMale = [[String]]()
                     for i in 0..<numbers[0].count {
@@ -70,9 +73,12 @@ extension ReportOptionController {
                     for title in titleForAgeRanges {
                         maleTitlesForAges.append("MALE: " + title)
                     }
+                    
+                    //add table for analysis result
                     views.append(Tabular(dataPoint: ["Total number", "Mean Age (years)","Mean Duration (years)","Mean HbA1c","Median HbA1c","HbA1c Range"], groupedvalues: groupedValuesForMale, titles: maleTitlesForAges))
                 }
                 
+                //add table for female to the report
                 if self.selectedAttributeIndexes[0].index(of: 1) != nil || selectedAttributeIndexes[0].count == 0 {
                     var groupedValuesForFeMale = [[String]]()
                     for i in 0..<numbers[1].count {
@@ -83,22 +89,28 @@ extension ReportOptionController {
                     for title in titleForAgeRanges {
                         femaleTitlesForAges.append("FEMALE: " + title)
                     }
+                    
+                    //add table for analysis result
                     views.append(Tabular(dataPoint: ["Total number", "Mean Age (years)","Mean Duration (years)","Mean HbA1c","Median HbA1c","HbA1c Range"], groupedvalues: groupedValuesForFeMale, titles: femaleTitlesForAges))
                 }
                 
                 let titleForBarChart = titleForAgeRanges
                 
+                //add bar chart for age breakdown result
                 if self.selectedAttributeIndexes[0].count == 0 || self.selectedAttributeIndexes[0].count == Constants.SELECTABLE_GENDERS.count{
                     views.append(BarChartWithFormatter(dataPoints: titleForAgeRanges, groupedValues: numbers, labels: Constants.SELECTABLE_GENDERS, title: "Age break down by genders"))
                 } else {
                     views.append(PieChart(dataPoints: titleForAgeRanges, values: numbers[self.selectedAttributeIndexes[0].first!], title: "Age break down by genders(" + Constants.SELECTABLE_GENDERS[self.selectedAttributeIndexes[0].first!] + ")"))
                 }
                 
-                
+                //if HbA1c ranges are set, generate the bar chart for HbA1c duration distribution
                 if self.ranges[3].count > 0 {
+                    
+                    //variables for storing analysis result
                     var groupedvaluesForMale = [[Double]](repeating: [Double](repeating: 0.0, count: self.ranges[3].count), count: self.ranges[0].count)
                     var groupedvaluesForFemale = [[Double]](repeating: [Double](repeating: 0.0, count: self.ranges[3].count), count: self.ranges[0].count)
                     
+                    //analyze the data
                     for i in 0..<self.ranges[3].count {
                         let min = (self.ranges[3][i].0 == Double.leastNormalMagnitude ? 0:self.ranges[3][i].0)
                         let max = (self.ranges[3][i].1 == Double.greatestFiniteMagnitude ? 200:self.ranges[3][i].1)
@@ -122,12 +134,14 @@ extension ReportOptionController {
                         }
                     }
                     
+                    //setup the input for the bar chart
                     var titleForHbA1cRanges = [String]()
                     for hba1cRange in self.ranges[3] {
                         let datapoint: String = (hba1cRange.0 == Double.leastNormalMagnitude ? "" : hba1cRange.0.description) + "~" + (hba1cRange.1 == Double.greatestFiniteMagnitude ? "" : hba1cRange.1.description)
                         titleForHbA1cRanges.append(datapoint)
                     }
                     
+                    //add bar chart for HbA1c duration to the report
                     if self.selectedAttributeIndexes[0].index(of: 0) != nil  || selectedAttributeIndexes[0].count == 0 {
                         views.append(BarChartWithFormatter(dataPoints: titleForHbA1cRanges, groupedValues: groupedvaluesForMale, labels: titleForBarChart,title:"HbA1c Range Distribution For Male"))
                     }
@@ -154,6 +168,7 @@ extension ReportOptionController {
                     ageRanges.append((min,max))
                 }
                 
+                //analyze the data
                 for i in 0..<local_id_id.count {
                     for index in 0..<ageRanges.count {
                         if let ageInDays = patients[i].age_at_export_in_days {
@@ -169,23 +184,26 @@ extension ReportOptionController {
                     }
                 }
                 
+                //setup the input for tables and charts
                 var titleForAgeRanges = [String]()
                 for range in self.ranges[0] {
                     let title: String = (range.0 == Double.leastNormalMagnitude ? "" : range.0.description) + "~" + (range.1 == Double.greatestFiniteMagnitude ? "" : range.1.description) + " years old"
                     titleForAgeRanges.append(title)
                 }
                 
+                //group the analysis results
                 var groupedValues = [[String]]()
                 for i in 0..<numbers.count {
                     groupedValues.append([numbers[i].description, String(format: "%.2f",(Double(totalAgesInDays[i])/Double(numbers[i])/365)),String(format: "%.2f",(Double(totalDurationsInDays[i])/Double(numbers[i])/365)),String(format: "%.2f",HbA1cRanges[i].average),HbA1cRanges[i].median.description + "0","\(HbA1cRanges[i].min)0~\(HbA1cRanges[i].max)0"])
                 }
                 
-                
+                //add table for analysis result to the report
                 views.append(Tabular(dataPoint: ["Total number", "Mean Age (years)","Mean Duration (years)","Mean HbA1c","Median HbA1c","HbA1c Range"], groupedvalues: groupedValues, titles: titleForAgeRanges))
                 
+                //add pie chart for age duration to the report
                 views.append(PieChart(dataPoints: titleForAgeRanges, values: numbers, title: "Age Distribution"))
                 
-                
+                //if HbA1c ranges are set, generate the bar chart for HbA1c duration distribution
                 if self.ranges[3].count > 0 {
                     var groupedvalues = [[Double]](repeating: [Double](repeating: 0.0, count: self.ranges[3].count), count: self.ranges[0].count)
                     
@@ -208,12 +226,14 @@ extension ReportOptionController {
                         }
                     }
                     
+                    //setup the input for tables and charts
                     var titleForHbA1cRanges = [String]()
                     for hba1cRange in self.ranges[3] {
                         let datapoint: String = (hba1cRange.0 == Double.leastNormalMagnitude ? "" : hba1cRange.0.description) + "~" + (hba1cRange.1 == Double.greatestFiniteMagnitude ? "" : hba1cRange.1.description)
                         titleForHbA1cRanges.append(datapoint)
                     }
                     
+                    //add bar chart for HbA1c duration distribution to the report
                     views.append(BarChartWithFormatter(dataPoints: titleForHbA1cRanges, groupedValues: groupedvalues, labels: titleForAgeRanges,title:"HbA1c Range Distribution"))
                     
                 }

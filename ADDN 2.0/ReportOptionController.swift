@@ -15,29 +15,24 @@ class ReportOptionController: UITableViewController {
     
     let switchCellId = "SwitchCellId"
     
-    var switchHbA1c: UISwitch?
-    var detailLabel: UILabel?
-    
+    //data for HbA1c switch
+    var switchForHbA1c: UISwitch?
+    var detailLabelForHbA1cSwitchButton: UILabel?
     var FlagForHbA1cTypes = false
-    
     var HbA1cRangesForIFFC = Constants.PRESET_HbA1c_RANGES_FOR_IFFC
-    
     var HbA1cRangesForNGSP = Constants.PRESET_HbA1c_RANGES_FOR_NGSP
     
+    //switch button for other items
     var switchForContact: UISwitch?
-    
     var switchAgeBreakDownByGender: UISwitch?
-    
     var switchInsulinRegimenBreakDownByAge: UISwitch?
-    
+    //Flags for other switch buttons
     var FlagForConsentToBeContacted = false
-    
     var FlagForAgeBreakDown = false
-    
     var FlagForInsulinRegimenBreakDown = false
     
+    //variables to store all set ranges and selected indexes for items
     var ranges = Constants.PRESET_RANGES
-    
     var selectedAttributeIndexes = [[Int](),[Constants.PRESET_DIABETES_TYPE_INDEX],[Int]()]
     
     
@@ -50,7 +45,7 @@ class ReportOptionController: UITableViewController {
         navigationController?.navigationBar.tintColor = UIColor.white
         navigationController?.navigationBar.barTintColor = UIColor.rgb(red: 61, green: 91, blue: 151)
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Generate", style: .plain, target: self, action: #selector(fetchData))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Generate", style: .plain, target: self, action: #selector(fetchDataForDetailedReport))
         
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
@@ -72,6 +67,7 @@ class ReportOptionController: UITableViewController {
         tableView.endEditing(true)
     }
     
+    //setup the option table cells
     override func numberOfSections(in tableView: UITableView) -> Int {
         return Constants.SELECTABLE_ITEMS.count
     }
@@ -99,9 +95,9 @@ class ReportOptionController: UITableViewController {
                 cell.detailLabel.text = Constants.SELECTABLE_HbA1c_TYPES[0]
                 ranges[indexPath.section] = HbA1cRangesForNGSP
             }
-            switchHbA1c = cell.switchButton
-            detailLabel = cell.detailLabel
-            cell.switchButton.addTarget(self, action: #selector(handleSwitch), for: .valueChanged)
+            switchForHbA1c = cell.switchButton
+            detailLabelForHbA1cSwitchButton = cell.detailLabel
+            cell.switchButton.addTarget(self, action: #selector(handleSwitchForHbA1cTypes), for: .valueChanged)
             return cell
         }
         
@@ -119,7 +115,7 @@ class ReportOptionController: UITableViewController {
             case 0:
                 cell.switchButton.setOn(FlagForConsentToBeContacted, animated: true)
                 switchForContact = cell.switchButton
-                cell.switchButton.addTarget(self, action: #selector(handleSwitchForContact), for: .valueChanged)
+                cell.switchButton.addTarget(self, action: #selector(handleSwitchForBeingContacted), for: .valueChanged)
                 break
             case 1:
                 cell.switchButton.setOn(FlagForAgeBreakDown, animated: true)
@@ -166,6 +162,7 @@ class ReportOptionController: UITableViewController {
         }
     }
     
+    //get text for detailed labels in cells
     func getDetailText(items: [String], selectedIndex: [Int]) -> String {
         if selectedIndex.count == 0 {
             return "Not set"
@@ -181,19 +178,21 @@ class ReportOptionController: UITableViewController {
         return text
     }
 
-    func handleSwitch(){
-        if (switchHbA1c?.isOn)! {
+    //switch the HbA1c Types
+    func handleSwitchForHbA1cTypes(){
+        if (switchForHbA1c?.isOn)! {
             FlagForHbA1cTypes = true
-            detailLabel?.text = Constants.SELECTABLE_HbA1c_TYPES[1]
+            detailLabelForHbA1cSwitchButton?.text = Constants.SELECTABLE_HbA1c_TYPES[1]
             ranges[ranges.count - 1] = HbA1cRangesForIFFC
         }else {
             FlagForHbA1cTypes = false
-            detailLabel?.text = Constants.SELECTABLE_HbA1c_TYPES[0]
+            detailLabelForHbA1cSwitchButton?.text = Constants.SELECTABLE_HbA1c_TYPES[0]
             ranges[ranges.count - 1] = HbA1cRangesForNGSP
         }
     }
     
-    func handleSwitchForContact() {
+    //switch for patients allowing contact
+    func handleSwitchForBeingContacted() {
         if (switchForContact?.isOn)! {
             FlagForConsentToBeContacted = true
         }else {
@@ -201,6 +200,7 @@ class ReportOptionController: UITableViewController {
         }
     }
     
+    //switch for generate age break down report
     func handleSwitchForAgeBreakDown() {
         if (switchAgeBreakDownByGender?.isOn)! {
             FlagForAgeBreakDown = true
@@ -209,6 +209,7 @@ class ReportOptionController: UITableViewController {
         }
     }
     
+    //switch for generate insulin regimen break down report
     func handleSwitchForInsulinRegimenBreakDown() {
         if (switchInsulinRegimenBreakDownByAge?.isOn)! {
             FlagForInsulinRegimenBreakDown = true

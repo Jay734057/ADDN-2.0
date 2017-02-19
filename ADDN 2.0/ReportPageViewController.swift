@@ -30,6 +30,7 @@ class ReportPageViewController: UIPageViewController,UIPageViewControllerDataSou
         }
     }
     
+    //set up the swipe actions for the report page controller
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         if let index = reports?.index(of: viewController){
             let nextIndex = index + 1

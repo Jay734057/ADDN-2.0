@@ -14,7 +14,6 @@ class ActivateController: UIViewController,UITextFieldDelegate
     lazy var profileImageView: UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named: "ADDN")
-        //487 * 90
         iv.contentMode = .scaleAspectFit
         iv.translatesAutoresizingMaskIntoConstraints = false
         return iv
@@ -72,29 +71,27 @@ class ActivateController: UIViewController,UITextFieldDelegate
     func handleActivate(){
         view.endEditing(true)
         
-        //should handle the authentication of activate code
+        //handle the authentication of activate code
         if let activateCode = activateCodeTextField.text {
-            //check if code is valid? then....
+            //check if code is valid
             APIservice.sharedInstance.validateToken(secret: activateCode, completion: { (jwt: jwt_token) in
+                //validate the token
+                
                 if jwt.token == Constants.VALID_TOKEN {
                     let defaultUser = UserDefaults.standard
                     defaultUser.set(true, forKey: "activateFlag")
-
+                    //present the home controller
                     let homeController = HomeController()
                     let homeNavController = UINavigationController(rootViewController: homeController)
-                    
                     self.present(homeNavController, animated: true, completion: nil)
                 } else {
-                    // code is not valid
+                    // code is not valid, set app status to false
                     let defaultUser = UserDefaults.standard
                     defaultUser.set(false, forKey: "activateFlag")
                     //show alert information
-                    
                     let alertView = UIAlertController(title: "Invalid Active Code!", message: "Try Again Please", preferredStyle: .alert)
-                    
                     let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                     alertView.addAction(alertAction)
-                    
                     self.present(alertView, animated: true, completion: {
                         self.activateCodeTextField.text = ""
                     })
@@ -111,11 +108,8 @@ class ActivateController: UIViewController,UITextFieldDelegate
         view.backgroundColor = UIColor.rgb(red: 61, green: 91, blue: 151)
         
         view.addSubview(inputsContainerView)
-        
         view.addSubview(profileImageView)
-        
         view.addSubview(activateButton)
-        
         view.addSubview(noActiveCodeButton)
 
         setupInputsContainerView()
@@ -138,7 +132,6 @@ class ActivateController: UIViewController,UITextFieldDelegate
         inputsContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -32).isActive = true
         inputsContainerView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        //
         inputsContainerView.addSubview(activateCodeTextField)
         //xywh
         activateCodeTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor,constant: 12).isActive = true

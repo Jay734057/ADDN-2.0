@@ -11,12 +11,6 @@ import Charts
 
 class ReportController: UIViewController {
     
-    var navTitle: String? {
-        didSet {
-            navigationItem.title = navTitle
-        }
-    }
-    
     var reportTitle: String? {
         didSet {
             reportTitleLabel.text = reportTitle
@@ -51,6 +45,7 @@ class ReportController: UIViewController {
         return label
     }()
     
+    //set up the detailed report in one page
     func setupView() {
         
         view.addSubview(scrollView)
@@ -63,22 +58,21 @@ class ReportController: UIViewController {
         if let charts = views {
             scrollView.contentSize = CGSize(width: self.view.bounds.size.width, height: CGFloat(Double((views?.count)!) * Double(view.frame.width) * 0.8))
             
+            //add the title to the report
             scrollView.addSubview(reportTitleLabel)
-            //
             reportTitleLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
             reportTitleLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 0).isActive = true
             reportTitleLabel.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -36).isActive = true
             reportTitleLabel.heightAnchor.constraint(equalToConstant: 60).isActive = true
             
             var topAnchor = reportTitleLabel.bottomAnchor
-            
+            //add tables, pie charts and bar charts to the report
             for i in 0..<charts.count {
                 
                 charts[i].translatesAutoresizingMaskIntoConstraints = false
                 
                 scrollView.addSubview(charts[i])
-                //xywh
-                
+        
                 charts[i].centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
                 if i == 0 {
                     charts[i].topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
@@ -86,6 +80,7 @@ class ReportController: UIViewController {
                     charts[i].topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true
                 }
                 
+                //set the size for tables only
                 var multiplierForWidth:CGFloat = 0.0
                 var multiplierForHeight:CGFloat = 0.0
                 if type(of: charts[i]).description() == "ADDN_2_0.Tabular" {
@@ -99,8 +94,8 @@ class ReportController: UIViewController {
                 charts[i].widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: multiplierForWidth).isActive = true
                 charts[i].heightAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: multiplierForHeight).isActive = true
                 
+                //get the bottom anchor for the current chart as the top anchor for the next chart
                 topAnchor = charts[i].bottomAnchor
-                
             }
         }
     }

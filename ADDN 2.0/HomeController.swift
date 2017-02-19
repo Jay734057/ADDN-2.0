@@ -9,7 +9,7 @@
 import UIKit
 
 class HomeController: UITableViewController {
-    
+    //all items in home controller
     let menu = ["Dashboard","Diabetes Type","Insulin Regimen","HbA1c","BMI SDS","Severe Hypo & DKA","Completeness & Audit"]
     
     let cellId = "CellId"
@@ -27,15 +27,11 @@ class HomeController: UITableViewController {
         
         tableView.register(MenuCell.self , forCellReuseIdentifier: cellId)
         
-        setupView()
-        }
-    
-    func setupView() {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
-        
     }
     
     
+    //setup table cells
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -54,7 +50,8 @@ class HomeController: UITableViewController {
         cell.profileImageView.image = UIImage(named: menu[indexPath.row])
         
         cell.accessoryType = .disclosureIndicator
-
+        
+        //set invalid items with lightgray color text
         switch indexPath.row {
         case 0:
             cell.selectionStyle = .gray

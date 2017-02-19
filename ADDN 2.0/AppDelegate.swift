@@ -21,12 +21,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         
-        
+        //check the applicaiton status before enter the home controller
         if checkIfActivated() {
             let homeController = HomeController()
             let homeNavController = UINavigationController(rootViewController: homeController)
             window?.rootViewController = homeNavController
         }else {
+            //present the activation controller
             window?.rootViewController = ActivateController()
         }
         

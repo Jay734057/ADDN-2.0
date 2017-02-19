@@ -23,7 +23,7 @@ class OverviewController: UITableViewController {
     
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
-        fetchData()
+        fetchDataFromPatientTable()
     }
     
     func showReportOptionController() {
@@ -31,9 +31,11 @@ class OverviewController: UITableViewController {
         navigationController?.pushViewController(reportOptionController, animated: true)
     }
     
+    //generate the url for http request to the patient table
     func generateURLForPatientTable(local_id_id: [Int]) -> String {
         var urlForPatientTable = Constants.URL_PREFIX + "patient?order=local_id_id&select=local_id_id,diabetes_type_value&active=not.eq.false"
         
+        //add local id constraints to the request url
         if local_id_id.count > 0 {
             urlForPatientTable = urlForPatientTable + "&local_id_id=in."
             for id in local_id_id {
@@ -44,7 +46,8 @@ class OverviewController: UITableViewController {
         return urlForPatientTable
     }
     
-    func fetchData() {
+    //fetch data from patient table
+    func fetchDataFromPatientTable() {
         if let ids = localIds {
             APIservice.sharedInstance.fetchFromURLForPatient(url: self.generateURLForPatientTable(local_id_id: ids), completion: { (patients: [Patient]) in
                 self.patientDic = [Int:Patient]()
@@ -81,6 +84,7 @@ class OverviewController: UITableViewController {
         tableView.reloadData()
     }
 
+    //setup the overview report table
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 4
     }

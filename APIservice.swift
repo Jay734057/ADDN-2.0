@@ -9,8 +9,10 @@
 import UIKit
 
 class APIservice: NSObject {
+    //instance for access API methods
     static let sharedInstance = APIservice()
-
+    
+    //Fetch data from patient table
     func fetchFromURLForPatient(url:String, completion:@escaping ([Patient])->()){
         let url = URL(string: url)
         URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
@@ -32,6 +34,7 @@ class APIservice: NSObject {
         }).resume()
     }
     
+    //Fetch data from visit table
     func fetchFromURLForVisit(url:String, completion:@escaping ([Visit])->()){
         let url = URL(string: url)
         URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
@@ -53,6 +56,7 @@ class APIservice: NSObject {
         }).resume()
     }
     
+    //Fetch data from localid table
     func fetchFromURLForLocalId(url:String, completion:@escaping ([LocalID])->()){
         let url = URL(string: url)
         URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
@@ -74,18 +78,19 @@ class APIservice: NSObject {
         }).resume()
     }
     
+    //valid activate token
     func validateToken(secret:String,  completion:@escaping (jwt_token)->()) {
-        
+        //get http body length
         let post = "code=\(secret)"
         var postData = post.data(using: String.Encoding.ascii, allowLossyConversion: true)
         let postLength = "\(postData?.count)"
+        //setup http request
         var request = URLRequest(url: URL(string:Constants.URL_PREFIX + "rpc/jwt_generator")!)
-        
         request.httpMethod = "POST"
         request.setValue(postLength, forHTTPHeaderField: "Content-Length")
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpBody = postData
-        
+        //send POST http request and receive response
         URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
             if error != nil {
                 print(error!)

@@ -14,6 +14,7 @@ class SingleSelectMenuController: SelectMenuController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        //change the selectedIndex for the related item
         if let i = index {
             if let selected = selectedIndex {
                 reportOptionController?.selectedAttributeIndexes[i] = [selected]
@@ -23,6 +24,8 @@ class SingleSelectMenuController: SelectMenuController {
         }
     }
     
+    
+    //setup table cells
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: cellId)
         cell.textLabel?.text = items[indexPath.row]

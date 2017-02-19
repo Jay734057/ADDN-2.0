@@ -27,25 +27,30 @@ class DashboardController: UITableViewController {
         
         tableView.register(MenuCell.self , forCellReuseIdentifier: cellId)
         
-        fetchData()
+        fetchDataFromLocalIdTable()
         
     }
     
-    var centersWithIdOfPatientsAndUpdatedDate : [String:([Int],String)]?
+    var centersWithIdsOfPatientsAndUpdatedDates : [String:([Int],String)]?
     
-    func fetchData() {
+    func fetchDataFromLocalIdTable() {
+        //setup request url
         let url = Constants.URL_PREFIX + "localid?select=id,centre,date_of_export&date_of_last_visit=not.is.null"
         
+        //retrieve data from localid table
         APIservice.sharedInstance.fetchFromURLForLocalId(url: url) { (localIds: [LocalID]) in
-            self.centersWithIdOfPatientsAndUpdatedDate = [String:([Int],String)]()
+            self.centersWithIdsOfPatientsAndUpdatedDates = [String:([Int],String)]()
             for localId in localIds {
+                //analyze retrieved data
                 if let center = localId.centre, let id = localId.id, let date = localId.date_of_export  {
-                    if self.centersWithIdOfPatientsAndUpdatedDate?[center] == nil {
-                        self.centersWithIdOfPatientsAndUpdatedDate?[center] = ([Int(id)],date)
+                    //grouped patient ids by centres
+                    if self.centersWithIdsOfPatientsAndUpdatedDates?[center] == nil {
+                        self.centersWithIdsOfPatientsAndUpdatedDates?[center] = ([Int(id)],date)
                     }else {
-                        self.centersWithIdOfPatientsAndUpdatedDate?[center]?.0.append(Int(id))
-                        if let lastUpdated = self.centersWithIdOfPatientsAndUpdatedDate?[center]?.1, lastUpdated < date {
-                            self.centersWithIdOfPatientsAndUpdatedDate?[center]?.1 = date
+                        self.centersWithIdsOfPatientsAndUpdatedDates?[center]?.0.append(Int(id))
+                        //get the last updated date of the center data
+                        if let lastUpdated = self.centersWithIdsOfPatientsAndUpdatedDates?[center]?.1, lastUpdated < date {
+                            self.centersWithIdsOfPatientsAndUpdatedDates?[center]?.1 = date
                         }
                     }
                 }
@@ -54,6 +59,7 @@ class DashboardController: UITableViewController {
         }
     }
     
+    //setup the dashboard table menu
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -63,7 +69,7 @@ class DashboardController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let centers = centersWithIdOfPatientsAndUpdatedDate?.keys {
+        if let centers = centersWithIdsOfPatientsAndUpdatedDates?.keys {
             return centers.count
         }else {
             return 0
@@ -77,7 +83,7 @@ class DashboardController: UITableViewController {
         cell.profileImageView.image = UIImage(named: "h\(indexPath.row)")
         cell.accessoryType = .disclosureIndicator
         
-        if let centers = centersWithIdOfPatientsAndUpdatedDate?.keys {
+        if let centers = centersWithIdsOfPatientsAndUpdatedDates?.keys {
             let centersArray = [String](centers)
             cell.menuTextLabel.text = centersArray[indexPath.row]
         }
@@ -89,8 +95,8 @@ class DashboardController: UITableViewController {
         let text = (tableView.cellForRow(at: indexPath) as! MenuCell).menuTextLabel.text
 
         overviewController.navigationItem.title = text
-        overviewController.localIds = centersWithIdOfPatientsAndUpdatedDate?[text!]?.0
-        overviewController.lastUpdatedDate = centersWithIdOfPatientsAndUpdatedDate?[text!]?.1
+        overviewController.localIds = centersWithIdsOfPatientsAndUpdatedDates?[text!]?.0
+        overviewController.lastUpdatedDate = centersWithIdsOfPatientsAndUpdatedDates?[text!]?.1
         
         navigationController?.pushViewController(overviewController, animated: true)
 

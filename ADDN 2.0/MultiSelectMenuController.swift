@@ -14,17 +14,21 @@ class MultiSelectMenuController: SelectMenuController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //allow multiple selection
         tableView.allowsMultipleSelection = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        //change the selected indexes array
         selectedIndex = selectedIndex.sorted()
         if let i = index {
             reportOptionController?.selectedAttributeIndexes[i] = selectedIndex
         }
     }
     
+    //setup the table cells
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: cellId)
         cell.textLabel?.text = items[indexPath.row]
